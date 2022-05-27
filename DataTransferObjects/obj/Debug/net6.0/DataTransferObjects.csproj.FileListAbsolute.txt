@@ -1,0 +1,12 @@
+C:\MAKERHUB\API\JTCN\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.deps.json
+C:\MAKERHUB\API\JTCN\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.dll
+C:\MAKERHUB\API\JTCN\DataTransferObjects\bin\Debug\net6.0\ref\DataTransferObjects.dll
+C:\MAKERHUB\API\JTCN\DataTransferObjects\bin\Debug\net6.0\DataTransferObjects.pdb
+C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.AssemblyReference.cache
+C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfoInputs.cache
+C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.AssemblyInfo.cs
+C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CoreCompileInputs.cache
+C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.dll
+C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\ref\DataTransferObjects.dll
+C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.pdb

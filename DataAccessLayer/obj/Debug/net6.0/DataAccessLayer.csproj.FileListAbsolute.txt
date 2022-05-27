@@ -1,0 +1,17 @@
+C:\MAKERHUB\API\JTCN\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.AssemblyReference.cache
+C:\MAKERHUB\API\JTCN\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\MAKERHUB\API\JTCN\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfoInputs.cache
+C:\MAKERHUB\API\JTCN\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.AssemblyInfo.cs
+C:\MAKERHUB\API\JTCN\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\MAKERHUB\API\JTCN\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.deps.json
+C:\MAKERHUB\API\JTCN\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\MAKERHUB\API\JTCN\DataAccessLayer\bin\Debug\net6.0\ref\DataAccessLayer.dll
+C:\MAKERHUB\API\JTCN\DataAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\MAKERHUB\API\JTCN\DataAccessLayer\bin\Debug\net6.0\AdoToolbox.dll
+C:\MAKERHUB\API\JTCN\DataAccessLayer\bin\Debug\net6.0\Entities.dll
+C:\MAKERHUB\API\JTCN\DataAccessLayer\bin\Debug\net6.0\AdoToolbox.pdb
+C:\MAKERHUB\API\JTCN\DataAccessLayer\bin\Debug\net6.0\Entities.pdb
+C:\MAKERHUB\API\JTCN\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.csproj.CopyComplete
+C:\MAKERHUB\API\JTCN\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.dll
+C:\MAKERHUB\API\JTCN\DataAccessLayer\obj\Debug\net6.0\ref\DataAccessLayer.dll
+C:\MAKERHUB\API\JTCN\DataAccessLayer\obj\Debug\net6.0\DataAccessLayer.pdb

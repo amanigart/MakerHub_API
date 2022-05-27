@@ -1,0 +1,51 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "8252bab8-16b0-4c6c-a43c-10dddee69675": {
+      "ProjectGuid": "8252bab8-16b0-4c6c-a43c-10dddee69675",
+      "DisplayName": "API_JTCN",
+      "ColorIndex": 0
+    },
+    "ff470a4c-16dd-41fb-92d6-56227e8f1109": {
+      "ProjectGuid": "ff470a4c-16dd-41fb-92d6-56227e8f1109",
+      "DisplayName": "DataAccessLayer",
+      "ColorIndex": 1
+    },
+    "8e8437de-d116-43d6-b70e-42a760f9d810": {
+      "ProjectGuid": "8e8437de-d116-43d6-b70e-42a760f9d810",
+      "DisplayName": "DB_JTCN",
+      "ColorIndex": 2
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Fichiers divers",
+      "ColorIndex": -1
+    },
+    "b84ccdf4-c2c8-4258-9f5f-4203ea6a485f": {
+      "ProjectGuid": "b84ccdf4-c2c8-4258-9f5f-4203ea6a485f",
+      "DisplayName": "DAL",
+      "ColorIndex": 3
+    },
+    "d535a6e4-3946-4df3-ae81-33583116d552": {
+      "ProjectGuid": "d535a6e4-3946-4df3-ae81-33583116d552",
+      "DisplayName": "BLL",
+      "ColorIndex": 4
+    },
+    "ec5ab9cc-c96d-48cb-9cb7-6011fcbbc067": {
+      "ProjectGuid": "ec5ab9cc-c96d-48cb-9cb7-6011fcbbc067",
+      "DisplayName": "AdoToolbox",
+      "ColorIndex": 5
+    },
+    "09aafe51-c5b5-46d9-bc42-007e5406506f": {
+      "ProjectGuid": "09aafe51-c5b5-46d9-bc42-007e5406506f",
+      "DisplayName": "Interfaces",
+      "ColorIndex": 6
+    },
+    "6a45db59-f19a-4d21-a33c-78c8b36d371f": {
+      "ProjectGuid": "6a45db59-f19a-4d21-a33c-78c8b36d371f",
+      "DisplayName": "LoggerService",
+      "ColorIndex": 7
+    }
+  },
+  "NextColorIndex": 8
+}

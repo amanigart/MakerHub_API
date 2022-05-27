@@ -1,0 +1,4 @@
+2022-05-22 03:21:37.9991 INFO LogInfo works !
+2022-05-22 03:21:38.0158 WARN LogWarn works !
+2022-05-22 03:21:38.0158 DEBUG LogDebug works !
+2022-05-22 03:21:38.0158 ERROR LogError works !
