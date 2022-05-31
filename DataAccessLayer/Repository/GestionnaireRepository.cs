@@ -18,30 +18,40 @@ namespace DataAccessLayer.Repository
             : base(config) 
         { }
 
-        public IEnumerable<Gestionnaire> GetAll()
+        public int Create(Gestionnaire gestionnaire)
         {
-            throw new NotImplementedException();
+            Command cmd = new Command("RegisterGestionnaire", true);
+            cmd.AddParameter("idMembre", gestionnaire.IdMembre);
+
+            return (int)_connection.ExecuteScalar(cmd);
         }
 
-        public Gestionnaire? GetById(int id)
+        public IEnumerable<Gestionnaire> GetAll()
+        {
+            string query = "SELECT * FROM Gestionnaire";
+            Command cmd = new Command(query);
+
+            return _connection.ExecuteReader<Gestionnaire>(cmd);
+        }
+
+        public Gestionnaire GetById(int id)
         {
             Command cmd = new Command("GetGestionnaireById", true);
-            cmd.AddParameter("id", id);
+            cmd.AddParameter("idGestionnaire", id);
 
             return _connection.ExecuteReader<Gestionnaire>(cmd).SingleOrDefault();
         }
 
-        public void Create(Gestionnaire gestionnaire)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            string query = "DELETE FROM Gestionnaire WHERE idGestionnaire = @id";
+            Command cmd = new Command(query);
+            cmd.AddParameter("id", id);
+
+            _connection.ExecuteNonQuery(cmd);
         }
 
-        public void Update(int id, Gestionnaire gestionnaire)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(int entity)
+        public void Update(Gestionnaire gestionnaire)
         {
             throw new NotImplementedException();
         }

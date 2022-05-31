@@ -9,7 +9,7 @@ namespace Entities.Exceptions
     public sealed class PasswordIncorrectException : IncorrectException
     {
         public PasswordIncorrectException()
-            : base($"Erreur! Le mot de passe est incorrect.")
+            : base($"Le mot de passe est incorrect.")
         { }
     }
 }

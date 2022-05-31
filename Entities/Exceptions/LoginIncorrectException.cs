@@ -9,7 +9,7 @@ namespace Entities.Exceptions
     public sealed class LoginIncorrectException : IncorrectException
     {
         public LoginIncorrectException()
-            : base("Erreur! Le login est incorrect.") 
+            : base("Le login est incorrect.") 
         { }
     }
 }

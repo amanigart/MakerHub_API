@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdoToolbox
 {
-    public class Command
+    public sealed class Command
     {
         internal string Query { get; private set; }
         internal bool IsStoredProcedure { get; private set; }

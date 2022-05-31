@@ -9,7 +9,7 @@ namespace Entities.Exceptions
     public sealed class GestionnaireNotFoundException : NotFoundException
     {
         public GestionnaireNotFoundException()
-            : base($"Erreur! Le gestionnaire n'existe pas.")
+            : base($"Le gestionnaire n'existe pas.")
         { }
     }
 }

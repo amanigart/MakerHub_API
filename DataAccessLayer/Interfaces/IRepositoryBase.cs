@@ -10,8 +10,8 @@ namespace DataAccessLayer.Interfaces
     {
         IEnumerable<T> GetAll();
         T GetById(int id);
-        void Create(T entity);
-        void Update(int id, T entity);
+        int Create(T entity);
+        void Update(T entity);
         void Delete(int id); 
     }
 }

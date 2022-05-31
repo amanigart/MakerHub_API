@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AdoToolbox
 {
-    public class Connection
+    public sealed class Connection
     {
         private string _connectionString;
 
@@ -75,24 +75,6 @@ namespace AdoToolbox
             }
         }
 
-        /*public IEnumerable<T> ExecuteReader<T>(Command cmd, Func<SqlDataReader, T> Convert)
-        {
-            using(SqlConnection c = CreateConnection())
-            {
-                using(SqlCommand command = CreateCommand(cmd,c))
-                {
-                    c.Open();
-                    using(SqlDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            yield return Convert(reader);
-                        }
-                    }
-                }
-            }
-        }*/
-
         public IEnumerable<T> ExecuteReader<T>(Command cmd) where T : new()
         {
             using (SqlConnection connection = CreateConnection())
@@ -105,20 +87,14 @@ namespace AdoToolbox
                     {
                         Type type = typeof(T);
                         var properties = type.GetProperties();
-                        /*var defaultConstructor = type.GetConstructor(Type.EmptyTypes);
-
-                        if (defaultConstructor is null)
-                            throw new Exception("Erreur DataReader. Constructeur sans paramètres inexistant.");*/
 
                         while (reader.Read())
                         {
-                            //var genericObject = Activator.CreateInstance(type);
-                            T genericObject = new T();
+                            T genericObject = (T)Activator.CreateInstance(type);
 
                             foreach (var p in properties)
                                 p.SetValue(genericObject, reader[p.Name]);
 
-                            //yield return (T)genericObject;
                             yield return genericObject;
                         }
                     }

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Horaire]
+(
+	idHoraire INT NOT NULL PRIMARY KEY IDENTITY,
+	jour VARCHAR(8) NOT NULL,
+	heureDebut VARCHAR(5) NOT NULL,
+	heureFin VARCHAR(5) NOT NULL
+)
