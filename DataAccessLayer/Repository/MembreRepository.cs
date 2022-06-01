@@ -46,6 +46,19 @@ namespace DataAccessLayer.Repository
             return _connection.ExecuteReader<Membre>(cmd);
         }
 
+        //public async Task<IEnumerable<Membre>> GetAllAsync() 
+        //{
+        //    string query = "SELECT * FROM Membre";
+        //    Command cmd = new Command(query);
+
+        //    List<Membre> members = new();
+
+        //    await foreach(var member in _connection.ExecuteReaderAsync<Membre>(cmd))
+        //        members.Add(member);
+
+        //    return members;
+        //}
+
         public Membre GetById(int id)
         {
             string query = "SELECT * FROM Membre WHERE idMembre = @idMembre";

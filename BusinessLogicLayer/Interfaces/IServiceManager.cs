@@ -9,5 +9,6 @@ namespace BusinessLogicLayer.Interfaces
     public interface IServiceManager
     {
         IAuthenticationService Authentication { get; }
+        IMembreService Membre { get; }
     }
 }

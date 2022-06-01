@@ -16,6 +16,7 @@ namespace DataAccessLayer.Repository
         private readonly Lazy<IRepositoryBase<Adresse>> _adresseRepository;
         private readonly Lazy<IRepositoryBase<Personne>> _personneRepository;
         private readonly Lazy<IRepositoryBase<Membre>> _membreRepository;
+        //private readonly Lazy<IMembreRepository> _membreRepository;
         private readonly Lazy<IRepositoryBase<Contact>> _contactRepository;
         private readonly Lazy<IRepositoryBase<Referent>> _referentRepository;
         private readonly Lazy<IDisciplineRepository> _disciplineRepository;
@@ -32,6 +33,7 @@ namespace DataAccessLayer.Repository
             _adresseRepository = new Lazy<IRepositoryBase<Adresse>>(() => new AdresseRepository(config));
             _personneRepository = new Lazy<IRepositoryBase<Personne>>(() => new PersonneRepository(config));
             _membreRepository = new Lazy<IRepositoryBase<Membre>>(() => new MembreRepository(config));
+            //_membreRepository = new Lazy<IMembreRepository>(() => new MembreRepository(config));
             _contactRepository = new Lazy<IRepositoryBase<Contact>>(() => new ContactRepository(config));
             _referentRepository = new Lazy<IRepositoryBase<Referent>>(() => new ReferentRepository(config));
             _disciplineRepository = new Lazy<IDisciplineRepository>(() => new DisciplineRepository(config));
@@ -47,6 +49,7 @@ namespace DataAccessLayer.Repository
         public IRepositoryBase<Adresse> Adresse => _adresseRepository.Value;
         public IRepositoryBase<Personne> Personne => _personneRepository.Value;
         public IRepositoryBase<Membre> Membre => _membreRepository.Value;
+        //public IMembreRepository Membre => _membreRepository.Value;
         public IRepositoryBase<Contact> Contact => _contactRepository.Value;
         public IRepositoryBase<Referent> Referent => _referentRepository.Value;
         public IDisciplineRepository Discipline => _disciplineRepository.Value;

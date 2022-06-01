@@ -10,12 +10,12 @@ namespace Entities.Models
     {
         public int IdMembre { get; set; }
         public string Sexe { get; set; }
-        public DateOnly DateNaissance { get; set; }
-        public string GroupeSanguin { get; set; }
+        public DateTime DateNaissance { get; set; }
+        public string? GroupeSanguin { get; set; }
         public bool AutoriseImage { get; set; }
         public int BasePresences { get; set; }
         public bool EstActif { get; set; }
         public int IdPersonne { get; set; }
-        public int IdUtilisateur { get; set; }
+        public int? IdUtilisateur { get; set; }
     }
 }

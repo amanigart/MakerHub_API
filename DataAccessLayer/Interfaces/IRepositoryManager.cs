@@ -14,6 +14,7 @@ namespace DataAccessLayer.Interfaces
         IRepositoryBase<Adresse> Adresse { get; }
         IRepositoryBase<Personne> Personne { get; }
         IRepositoryBase<Membre> Membre { get; }
+        //IMembreRepository Membre { get; }
         IRepositoryBase<Contact> Contact { get; }
         IRepositoryBase<Referent> Referent { get; }
         IDisciplineRepository Discipline { get; }

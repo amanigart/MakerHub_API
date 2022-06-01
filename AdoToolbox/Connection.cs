@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
@@ -93,7 +94,14 @@ namespace AdoToolbox
                             T genericObject = (T)Activator.CreateInstance(type);
 
                             foreach (var p in properties)
-                                p.SetValue(genericObject, reader[p.Name]);
+                            {
+                                var fieldValue = reader[p.Name];
+
+                                if (fieldValue is DBNull)
+                                    fieldValue = null;
+
+                                p.SetValue(genericObject, fieldValue);
+                            }
 
                             yield return genericObject;
                         }
@@ -101,6 +109,40 @@ namespace AdoToolbox
                 }
             }
         }
+
+        //public async IAsyncEnumerable<T> ExecuteReaderAsync<T>(Command cmd) where T : new()
+        //{
+        //    using (SqlConnection connection = CreateConnection())
+        //    {
+        //        using (SqlCommand command = CreateCommand(cmd, connection))
+        //        {
+        //            await connection.OpenAsync();
+
+        //            using (SqlDataReader reader = await command.ExecuteReaderAsync())
+        //            {
+        //                Type type = typeof(T);
+        //                var properties = type.GetProperties();
+
+        //                while (await reader.ReadAsync())
+        //                {
+        //                    T genericObject = (T)Activator.CreateInstance(type);
+
+        //                    foreach (var p in properties)
+        //                    {
+        //                        var fieldValue = reader[p.Name];
+
+        //                        if (fieldValue is DBNull)  //== DBNull.Value)
+        //                            fieldValue = null;
+
+        //                        p.SetValue(genericObject, fieldValue);
+        //                    }
+
+        //                    yield return genericObject;
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         public DataTable GetDataTable(Command cmd)
         {

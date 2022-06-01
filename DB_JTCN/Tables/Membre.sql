@@ -2,7 +2,7 @@
 (
 	idMembre INT NOT NULL PRIMARY KEY IDENTITY,
 	sexe VARCHAR(15) NOT NULL,
-	dateNaissance DATE NOT NULL,
+	dateNaissance DATETIME2(7) NOT NULL,
 	groupeSanguin VARCHAR(3),
 	autoriseImage BIT NOT NULL,
 	basePresences INT NOT NULL,
