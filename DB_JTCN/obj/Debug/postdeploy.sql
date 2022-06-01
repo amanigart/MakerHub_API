@@ -34,3 +34,4 @@ EXEC RegisterPersonne 'Manigart', 'Adrien', 'adm@mail.com', '0471777126', 2;
 EXEC RegisterMembre 'homme', '1985-04-23', NULL, 1, 57, 2;
 EXEC RegisterAppUtilisateur 'membre', 'membre', 2; 
 EXEC RegisterCeintureMembre 2, 1
+GO

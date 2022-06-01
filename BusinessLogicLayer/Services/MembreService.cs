@@ -1,6 +1,7 @@
 ﻿using BusinessLogicLayer.Interfaces;
 using DataAccessLayer.Interfaces;
 using DataTransferObjects;
+using Entities.Exceptions;
 using Entities.Models;
 using LoggerService;
 using System;
@@ -22,7 +23,7 @@ namespace BusinessLogicLayer.Services
             _logger = logger;
         }
 
-        public IEnumerable<MembreBasicDto> GetMemberList()
+        public IEnumerable<MembreDto> GetMemberList()
         {
             var members = _repository.Membre.GetAll().Select(m => new { IdMembre = m.IdMembre, IdPersonne = m.IdPersonne});
             var persons = _repository.Personne.GetAll().Select(p => new { IdPersonne = p.IdPersonne, Nom = p.Nom, Prenom = p.Prenom});
@@ -31,7 +32,7 @@ namespace BusinessLogicLayer.Services
                     member => member.IdPersonne,
                     person => person.IdPersonne,
                     (member, person) => 
-                        new MembreBasicDto
+                        new MembreDto
                         {
                             IdMembre = member.IdMembre,
                             Nom = person.Nom,
@@ -60,6 +61,37 @@ namespace BusinessLogicLayer.Services
         //    return membersDto;
         //}
 
+        public MembreDetailDto GetMemberDetail(int id)
+        {
+            Membre member = _repository.Membre.GetById(id);
+            if (member is null)
+                throw new MembreNotFoundException();
 
+            CeintureMembre lastBelt = _repository.CeintureMembre.GetAllByIdMembre(id).Last();
+            string beltColor = _repository.Ceinture.GetById(lastBelt.IdCeinture).Couleur;
+
+            Personne person = _repository.Personne.GetById(member.IdPersonne);
+            Adresse address = _repository.Adresse.GetById(person.IdAdresse);
+
+            // mapper => cf auto-mapper
+
+            return new MembreDetailDto()
+            {
+                IdMembre = member.IdMembre,
+                Personne = person,
+                Adresse = address,
+                Sexe = member.Sexe,
+                DateNaissance = member.DateNaissance.ToString("dd/MM/yyyy"),
+                GroupeSanguin = member.GroupeSanguin,
+                AutoriseImage = member.AutoriseImage,
+                BasePresences = member.BasePresences,
+                Ceinture = beltColor
+            };
+        }
+
+        public void DeleteMember(int id)
+        {
+            _repository.Membre.Delete(id);
+        }
     }
 }

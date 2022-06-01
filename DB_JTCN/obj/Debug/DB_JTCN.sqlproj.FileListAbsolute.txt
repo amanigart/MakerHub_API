@@ -13,3 +13,7 @@ C:\MAKERHUB\API\JTCN\DB_JTCN\bin\Debug\DB_JTCN.pdb
 C:\MAKERHUB\API\JTCN\DB_JTCN\obj\Debug\DB_JTCN.dll
 C:\MAKERHUB\API\JTCN\DB_JTCN\obj\Debug\DB_JTCN.pdb
 C:\MAKERHUB\API\JTCN\DB_JTCN\obj\Debug\DB_JTCN.sqlproj.AssemblyReference.cache
+C:\MAKERHUB\API\JTCN\DB_JTCN\obj\Debug\Model.xml
+C:\MAKERHUB\API\JTCN\DB_JTCN\obj\Debug\refactor.xml
+C:\MAKERHUB\API\JTCN\DB_JTCN\obj\Debug\postdeploy.sql
+C:\MAKERHUB\API\JTCN\DB_JTCN\obj\Debug\predeploy.sql

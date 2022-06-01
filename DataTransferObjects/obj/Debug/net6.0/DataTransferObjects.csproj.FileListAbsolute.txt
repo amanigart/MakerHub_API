@@ -10,3 +10,6 @@ C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.cs
 C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.dll
 C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\ref\DataTransferObjects.dll
 C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.pdb
+C:\MAKERHUB\API\JTCN\DataTransferObjects\bin\Debug\net6.0\Entities.dll
+C:\MAKERHUB\API\JTCN\DataTransferObjects\bin\Debug\net6.0\Entities.pdb
+C:\MAKERHUB\API\JTCN\DataTransferObjects\obj\Debug\net6.0\DataTransferObjects.csproj.CopyComplete

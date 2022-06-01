@@ -248,7 +248,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\MAKERHUB\\API\\JTCN\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\MAKERHUB\\API\\JTCN\\Entities\\Entities.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

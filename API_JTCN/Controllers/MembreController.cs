@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Interfaces;
+using DataTransferObjects;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,11 +19,7 @@ namespace API_JTCN.Controllers
         [HttpGet("liste")]
         public IActionResult GetMemberList()
         {
-            var watch = System.Diagnostics.Stopwatch.StartNew();
             var members = _service.Membre.GetMemberList();
-            watch.Stop();
-            Console.WriteLine(watch.ElapsedMilliseconds);
-
             return Ok(members);
         }
 
@@ -36,5 +33,26 @@ namespace API_JTCN.Controllers
 
         //    return Ok(members);
         //}
+
+        [HttpDelete("supprimer")]
+        public IActionResult DeleteMember(int id)
+        {
+            _service.Membre.DeleteMember(id);
+            return Ok();
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult GetMemberDetails(int id)
+        {
+            try
+            {
+                MembreDetailDto member = _service.Membre.GetMemberDetail(id);
+                return Ok(member);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
