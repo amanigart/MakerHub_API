@@ -20,6 +20,7 @@ namespace DataAccessLayer.Interfaces
         IDisciplineRepository Discipline { get; }
         IRepositoryBase<Ceinture> Ceinture { get; }
         ICeintureMembreRepository CeintureMembre { get; }
+        ITopCeintureRepository TopCeinture { get; }
         IHoraireRepository Horaire { get; }
         IEntrainementRepository Entrainement { get; }
         IPresenceRepository Presence { get; }

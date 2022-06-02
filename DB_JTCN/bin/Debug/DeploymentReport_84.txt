@@ -1,0 +1,75 @@
+﻿** Met en surbrillance
+     Tables à reconstruire
+       Aucun
+     Index ordonnés en clusters à supprimer
+       Aucun
+     Index ordonnés en clusters à créer.
+       Aucun
+     Problèmes de données possibles
+       Aucun
+
+** Actions de l'utilisateur
+     Créer
+       [dbo].[Adresse] (Table)
+       [dbo].[AppUtilisateur] (Table)
+       [dbo].[Ceinture] (Table)
+       [dbo].[CeintureMembre] (Table)
+       [dbo].[Contact] (Table)
+       [dbo].[Discipline] (Table)
+       [dbo].[Entrainement] (Table)
+       [dbo].[Examen] (Table)
+       [dbo].[Gestionnaire] (Table)
+       [dbo].[Horaire] (Table)
+       [dbo].[Membre] (Table)
+       [dbo].[Personne] (Table)
+       [dbo].[Presence] (Table)
+       [dbo].[Referent] (Table)
+       [dbo].[Salt] (Table)
+       Contrainte par défaut: contrainte sans nom sur [dbo].[Membre] (Contrainte par défaut)
+       [dbo].[FK_ceinture_iddiscipline] (Clé étrangère)
+       [dbo].[FK_ceinturemembre_idmembre] (Clé étrangère)
+       [dbo].[FK_ceinturemembre_idceinture] (Clé étrangère)
+       [dbo].[FK_contact_idmembre] (Clé étrangère)
+       [dbo].[FK_contact_idcontact] (Clé étrangère)
+       [dbo].[FK_entrainement_idgestionnaire] (Clé étrangère)
+       [dbo].[FK_entrainement_idhoraire] (Clé étrangère)
+       [dbo].[FK_examen_idmembre] (Clé étrangère)
+       [dbo].[FK_examen_idceinture] (Clé étrangère)
+       [dbo].[FK_gestionnaire_idmembre] (Clé étrangère)
+       [dbo].[FK_membre_idpersonne] (Clé étrangère)
+       [dbo].[FK_membre_idUtilisateur] (Clé étrangère)
+       [dbo].[FK_personne_idadresse] (Clé étrangère)
+       [dbo].[FK_presence_identrainment] (Clé étrangère)
+       [dbo].[FK_presence_idmembre] (Clé étrangère)
+       [dbo].[FK_referent_idmembre] (Clé étrangère)
+       [dbo].[FK_referent_idreferent] (Clé étrangère)
+       [dbo].[FK_salt_idutilisateur] (Clé étrangère)
+       [dbo].[V_TopCeintures] (Vue)
+       [dbo].[GetSecretKey] (Fonction)
+       [dbo].[CheckIfIsGestionnaire] (Procédure)
+       [dbo].[GetGestionnaireById] (Procédure)
+       [dbo].[Login] (Procédure)
+       [dbo].[RegisterAdresse] (Procédure)
+       [dbo].[RegisterAppUtilisateur] (Procédure)
+       [dbo].[RegisterCeinture] (Procédure)
+       [dbo].[RegisterCeintureMembre] (Procédure)
+       [dbo].[RegisterContact] (Procédure)
+       [dbo].[RegisterDiscipline] (Procédure)
+       [dbo].[RegisterEntrainement] (Procédure)
+       [dbo].[RegisterGestionnaire] (Procédure)
+       [dbo].[RegisterHoraire] (Procédure)
+       [dbo].[RegisterMembre] (Procédure)
+       [dbo].[RegisterPersonne] (Procédure)
+       [dbo].[RegisterPresence] (Procédure)
+       [dbo].[RegisterReferent] (Procédure)
+       [dbo].[UpdateAdresse] (Procédure)
+       [dbo].[UpdateCeinture] (Procédure)
+       [dbo].[UpdateContact] (Procédure)
+       [dbo].[UpdateEntrainement] (Procédure)
+       [dbo].[UpdateHoraire] (Procédure)
+       [dbo].[UpdateMembre] (Procédure)
+       [dbo].[UpdatePersonne] (Procédure)
+       [dbo].[UpdatePresence] (Procédure)
+       [dbo].[UpdateReferent] (Procédure)
+
+** Actions de support

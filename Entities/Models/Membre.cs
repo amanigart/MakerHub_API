@@ -9,6 +9,7 @@ namespace Entities.Models
     public sealed class Membre
     {
         public int IdMembre { get; set; }
+        public string? Photo { get; set; }
         public string Sexe { get; set; }
         public DateTime DateNaissance { get; set; }
         public string? GroupeSanguin { get; set; }

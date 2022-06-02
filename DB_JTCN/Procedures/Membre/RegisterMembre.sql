@@ -1,4 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[RegisterMembre]
+	@photo VARCHAR(200),
 	@sexe VARCHAR(15),
 	@dateNaiss DATE,
 	@groupeSanguin VARCHAR(3),
@@ -7,7 +8,7 @@
 	@idPersonne INT
 AS
 BEGIN
-	INSERT INTO Membre (sexe, dateNaissance, groupeSanguin, autoriseImage, basePresences, idPersonne)
+	INSERT INTO Membre (photo, sexe, dateNaissance, groupeSanguin, autoriseImage, basePresences, idPersonne)
 	OUTPUT inserted.idMembre
-	VALUES (@sexe, @dateNaiss, @groupeSanguin, @autoriseImage, @presences, @idPersonne)
+	VALUES (@photo, @sexe, @dateNaiss, @groupeSanguin, @autoriseImage, @presences, @idPersonne)
 END

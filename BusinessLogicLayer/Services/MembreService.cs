@@ -66,26 +66,25 @@ namespace BusinessLogicLayer.Services
             Membre member = _repository.Membre.GetById(id);
             if (member is null)
                 throw new MembreNotFoundException();
-
-            CeintureMembre lastBelt = _repository.CeintureMembre.GetAllByIdMembre(id).Last();
-            string beltColor = _repository.Ceinture.GetById(lastBelt.IdCeinture).Couleur;
-
+            
+            var jiujitsuTopBelt = _repository.TopCeinture.GetTopCeinturesByMembre(member.IdMembre).Select(x => x.Couleur).FirstOrDefault();
             Personne person = _repository.Personne.GetById(member.IdPersonne);
             Adresse address = _repository.Adresse.GetById(person.IdAdresse);
 
-            // mapper => cf auto-mapper
+            // TODO: ajouter contact + Referent
 
             return new MembreDetailDto()
             {
                 IdMembre = member.IdMembre,
                 Personne = person,
                 Adresse = address,
+                Photo = member.Photo,
                 Sexe = member.Sexe,
                 DateNaissance = member.DateNaissance.ToString("dd/MM/yyyy"),
                 GroupeSanguin = member.GroupeSanguin,
                 AutoriseImage = member.AutoriseImage,
                 BasePresences = member.BasePresences,
-                Ceinture = beltColor
+                CeintureJiujitsu = jiujitsuTopBelt.ToString()
             };
         }
 
@@ -93,5 +92,9 @@ namespace BusinessLogicLayer.Services
         {
             _repository.Membre.Delete(id);
         }
+
+        // MembreCreation
+
+        // MembreUpdate
     }
 }

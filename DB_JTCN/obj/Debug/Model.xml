@@ -161,25 +161,6 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Ceinture].[idCeinture]" />
-							</Entry>
-						</Relationship>
-					</Element>
-				</Entry>
-			</Relationship>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Ceinture]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
-		</Element>
-		<Element Type="SqlPrimaryKeyConstraint">
-			<Relationship Name="ColumnSpecifications">
-				<Entry>
-					<Element Type="SqlIndexedColumnSpecification">
-						<Relationship Name="Column">
-							<Entry>
 								<References Name="[dbo].[Personne].[idPersonne]" />
 							</Entry>
 						</Relationship>
@@ -191,7 +172,7 @@
 					<References Name="[dbo].[Personne]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="9" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -210,7 +191,7 @@
 					<References Name="[dbo].[Contact]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="10" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -229,7 +210,7 @@
 					<References Name="[dbo].[Presence]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="11" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -248,7 +229,7 @@
 					<References Name="[dbo].[Adresse]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="12" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -267,7 +248,7 @@
 					<References Name="[dbo].[Examen]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="13" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -286,7 +267,7 @@
 					<References Name="[dbo].[CeintureMembre]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="14" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -305,7 +286,7 @@
 					<References Name="[dbo].[Horaire]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="15" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -324,7 +305,7 @@
 					<References Name="[dbo].[Entrainement]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="16" />
 		</Element>
 		<Element Type="SqlPrimaryKeyConstraint">
 			<Relationship Name="ColumnSpecifications">
@@ -341,6 +322,25 @@
 			<Relationship Name="DefiningTable">
 				<Entry>
 					<References Name="[dbo].[Membre]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="17" />
+		</Element>
+		<Element Type="SqlPrimaryKeyConstraint">
+			<Relationship Name="ColumnSpecifications">
+				<Entry>
+					<Element Type="SqlIndexedColumnSpecification">
+						<Relationship Name="Column">
+							<Entry>
+								<References Name="[dbo].[Ceinture].[idCeinture]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Ceinture]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="18" />
@@ -363,7 +363,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="13" />
+						<AttachedAnnotation Disambiguator="12" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -520,7 +520,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="9" />
+						<AttachedAnnotation Disambiguator="18" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -530,6 +530,22 @@
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
 									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Ceinture].[illustration]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[varchar]" />
@@ -598,7 +614,7 @@
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="15" />
+						<AttachedAnnotation Disambiguator="14" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -739,7 +755,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="11" />
+						<AttachedAnnotation Disambiguator="10" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -863,7 +879,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="17" />
+						<AttachedAnnotation Disambiguator="16" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -941,7 +957,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="14" />
+						<AttachedAnnotation Disambiguator="13" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1582,7 +1598,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="16" />
+						<AttachedAnnotation Disambiguator="15" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -1796,7 +1812,23 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="18" />
+						<AttachedAnnotation Disambiguator="17" />
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSimpleColumn" Name="[dbo].[Membre].[photo]">
+						<Relationship Name="TypeSpecifier">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
 					</Element>
 				</Entry>
 				<Entry>
@@ -1954,7 +1986,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="10" />
+						<AttachedAnnotation Disambiguator="9" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2066,7 +2098,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="12" />
+						<AttachedAnnotation Disambiguator="11" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2488,9 +2520,9 @@ END]]></Value>
 				<Value><![CDATA[
 BEGIN
 
-	INSERT INTO Ceinture (couleur, nbPresencesRequis, idDiscipline)
+	INSERT INTO Ceinture (couleur, illustration, nbPresencesRequis, idDiscipline)
 	OUTPUT inserted.idCeinture
-	VALUES (@couleur, @nbPresences, @idDiscipline)
+	VALUES (@couleur, @illustration, @nbPresences, @idDiscipline)
 
 END]]></Value>
 			</Property>
@@ -2503,6 +2535,9 @@ END]]></Value>
 					<References Name="[dbo].[Ceinture].[couleur]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[Ceinture].[illustration]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[Ceinture].[nbPresencesRequis]" />
 				</Entry>
 				<Entry>
@@ -2510,6 +2545,9 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[RegisterCeinture].[@couleur]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RegisterCeinture].[@illustration]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[RegisterCeinture].[@nbPresences]" />
@@ -2528,6 +2566,22 @@ END]]></Value>
 							<Entry>
 								<Element Type="SqlTypeSpecifier">
 									<Property Name="Length" Value="50" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[RegisterCeinture].[@illustration]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[varchar]" />
@@ -2575,10 +2629,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="269" />
+				<Property Name="Length" Value="328" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[RegisterCeinture]&#xD;&#xA;&#x9;@couleur VARCHAR(50),&#xD;&#xA;&#x9;@nbPresences INT,&#xD;&#xA;&#x9;@idDiscipline INT&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[RegisterCeinture]&#xD;&#xA;&#x9;@couleur VARCHAR(50),&#xD;&#xA;&#x9;@illustration VARCHAR(200),&#xD;&#xA;&#x9;@nbPresences INT,&#xD;&#xA;&#x9;@idDiscipline INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[RegisterCeintureMembre]">
@@ -3064,15 +3118,18 @@ END]]></Value>
 			<Property Name="BodyScript">
 				<Value><![CDATA[
 BEGIN
-	INSERT INTO Membre (sexe, dateNaissance, groupeSanguin, autoriseImage, basePresences, idPersonne)
+	INSERT INTO Membre (photo, sexe, dateNaissance, groupeSanguin, autoriseImage, basePresences, idPersonne)
 	OUTPUT inserted.idMembre
-	VALUES (@sexe, @dateNaiss, @groupeSanguin, @autoriseImage, @presences, @idPersonne)
+	VALUES (@photo, @sexe, @dateNaiss, @groupeSanguin, @autoriseImage, @presences, @idPersonne)
 END]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="BodyDependencies">
 				<Entry>
 					<References Name="[dbo].[Membre]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Membre].[photo]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Membre].[sexe]" />
@@ -3091,6 +3148,9 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Membre].[idPersonne]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[RegisterMembre].[@photo]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[RegisterMembre].[@sexe]" />
@@ -3115,6 +3175,22 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[RegisterMembre].[@photo]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
 				<Entry>
 					<Element Type="SqlSubroutineParameter" Name="[dbo].[RegisterMembre].[@sexe]">
 						<Relationship Name="Type">
@@ -3214,10 +3290,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="395" />
+				<Property Name="Length" Value="433" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[RegisterMembre]&#xD;&#xA;&#x9;@sexe VARCHAR(15),&#xD;&#xA;&#x9;@dateNaiss DATE,&#xD;&#xA;&#x9;@groupeSanguin VARCHAR(3),&#xD;&#xA;&#x9;@autoriseImage BIT,&#xD;&#xA;&#x9;@presences INT,&#xD;&#xA;&#x9;@idPersonne INT&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[RegisterMembre]&#xD;&#xA;&#x9;@photo VARCHAR(200),&#xD;&#xA;&#x9;@sexe VARCHAR(15),&#xD;&#xA;&#x9;@dateNaiss DATE,&#xD;&#xA;&#x9;@groupeSanguin VARCHAR(3),&#xD;&#xA;&#x9;@autoriseImage BIT,&#xD;&#xA;&#x9;@presences INT,&#xD;&#xA;&#x9;@idPersonne INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[RegisterPersonne]">
@@ -4217,7 +4293,8 @@ END]]></Value>
 BEGIN
 
 	UPDATE Membre
-	SET sexe = @sexe,
+	SET photo = @photo,
+		sexe = @sexe,
 		dateNaissance = @dateNaiss,
 		groupeSanguin = @groupeSanguin,
 		autoriseImage = @autoriseImage,
@@ -4230,6 +4307,12 @@ END]]></Value>
 			<Relationship Name="BodyDependencies">
 				<Entry>
 					<References Name="[dbo].[Membre]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Membre].[photo]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[UpdateMembre].[@photo]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Membre].[sexe]" />
@@ -4277,6 +4360,22 @@ END]]></Value>
 									<Relationship Name="Type">
 										<Entry>
 											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[UpdateMembre].[@photo]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Property Name="Length" Value="200" />
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[varchar]" />
 										</Entry>
 									</Relationship>
 								</Element>
@@ -4383,10 +4482,10 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="397" />
+				<Property Name="Length" Value="439" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
-				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[UpdateMembre]&#xD;&#xA;&#x9;@idMembre INT,&#xD;&#xA;&#x9;@sexe VARCHAR(15),&#xD;&#xA;&#x9;@dateNaiss DATE,&#xD;&#xA;&#x9;@groupeSanguin VARCHAR(3),&#xD;&#xA;&#x9;@autoriseImage BIT,&#xD;&#xA;&#x9;@presences INT,&#xD;&#xA;&#x9;@idPersonne INT&#xD;&#xA;AS" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[UpdateMembre]&#xD;&#xA;&#x9;@idMembre INT,&#xD;&#xA;&#x9;@photo VARCHAR(200),&#xD;&#xA;&#x9;@sexe VARCHAR(15),&#xD;&#xA;&#x9;@dateNaiss DATE,&#xD;&#xA;&#x9;@groupeSanguin VARCHAR(3),&#xD;&#xA;&#x9;@autoriseImage BIT,&#xD;&#xA;&#x9;@presences INT,&#xD;&#xA;&#x9;@idPersonne INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[UpdatePersonne]">
@@ -4765,6 +4864,92 @@ END]]></Value>
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[UpdateReferent]&#xD;&#xA;&#x9;@id INT,&#xD;&#xA;&#x9;@idMembre INT,&#xD;&#xA;&#x9;@idReferent INT,&#xD;&#xA;&#x9;@lienMembre VARCHAR(50)&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlView" Name="[dbo].[V_CeinturesJiujitsu]">
+			<Property Name="QueryScript">
+				<Value><![CDATA[ 
+	SELECT cm.id, cm.idMembre, c.couleur
+	FROM Discipline as d 
+		 JOIN Ceinture as c ON (d.idDiscipline = c.idDiscipline)
+		 JOIN CeintureMembre as cm ON (c.idCeinture = cm.idCeinture)
+	WHERE (d.idDiscipline = 1)]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="Columns">
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[V_CeinturesJiujitsu].[id]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[CeintureMembre].[id]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[V_CeinturesJiujitsu].[idMembre]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[CeintureMembre].[idMembre]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+				<Entry>
+					<Element Type="SqlComputedColumn" Name="[dbo].[V_CeinturesJiujitsu].[couleur]">
+						<Relationship Name="ExpressionDependencies">
+							<Entry>
+								<References Name="[dbo].[Ceinture].[couleur]" />
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="QueryDependencies">
+				<Entry>
+					<References Name="[dbo].[Discipline]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Ceinture]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Discipline].[idDiscipline]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Ceinture].[idDiscipline]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CeintureMembre]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Ceinture].[idCeinture]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CeintureMembre].[idCeinture]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CeintureMembre].[id]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[CeintureMembre].[idMembre]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Ceinture].[couleur]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Discipline].[idDiscipline]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="261" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE VIEW [dbo].[V_CeinturesJiujitsu]&#xD;&#xA;&#x9;AS" />
 			</Annotation>
 		</Element>
 	</Model>

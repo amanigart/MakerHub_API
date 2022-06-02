@@ -22,6 +22,7 @@ namespace DataAccessLayer.Repository
         private readonly Lazy<IDisciplineRepository> _disciplineRepository;
         private readonly Lazy<IRepositoryBase<Ceinture>> _ceintureRepository;
         private readonly Lazy<ICeintureMembreRepository> _ceintureMembreRepository;
+        private readonly Lazy<ITopCeintureRepository> _topCeintureRepository;
         private readonly Lazy<IHoraireRepository> _horaireRepository;
         private readonly Lazy<IEntrainementRepository> _entrainementRepository;
         private readonly Lazy<IPresenceRepository> _presenceRepository;
@@ -39,6 +40,7 @@ namespace DataAccessLayer.Repository
             _disciplineRepository = new Lazy<IDisciplineRepository>(() => new DisciplineRepository(config));
             _ceintureRepository = new Lazy<IRepositoryBase<Ceinture>>(() => new CeintureRepository(config));
             _ceintureMembreRepository = new Lazy<ICeintureMembreRepository>(() => new CeintureMembreRepository(config));
+            _topCeintureRepository = new Lazy<ITopCeintureRepository>(() => new TopCeintureRepository(config));
             _horaireRepository = new Lazy<IHoraireRepository>(() => new HoraireRepository(config));
             _entrainementRepository = new Lazy<IEntrainementRepository>(() => new EntrainementRepository(config));
             _presenceRepository = new Lazy<IPresenceRepository>(() => new PresenceRepository(config));
@@ -55,6 +57,7 @@ namespace DataAccessLayer.Repository
         public IDisciplineRepository Discipline => _disciplineRepository.Value;
         public IRepositoryBase<Ceinture> Ceinture => _ceintureRepository.Value;
         public ICeintureMembreRepository CeintureMembre => _ceintureMembreRepository.Value;
+        public ITopCeintureRepository TopCeinture => _topCeintureRepository.Value;
         public IHoraireRepository Horaire => _horaireRepository.Value;
         public IEntrainementRepository Entrainement => _entrainementRepository.Value;
         public IPresenceRepository Presence => _presenceRepository.Value;

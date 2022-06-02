@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[Membre]
 (
 	idMembre INT NOT NULL PRIMARY KEY IDENTITY,
+	photo VARCHAR(200),
 	sexe VARCHAR(15) NOT NULL,
 	dateNaissance DATE NOT NULL,
 	groupeSanguin VARCHAR(3),

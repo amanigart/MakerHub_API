@@ -117,6 +117,7 @@
     <Build Include="Procedures\Entrainement\UpdateEntrainement.sql" />
     <Build Include="Procedures\Presence\RegisterPresence.sql" />
     <Build Include="Procedures\Presence\UpdatePresence.sql" />
+    <Build Include="Views\V_CeinturesJiujitsu.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB_JTCN.publish.xml" />

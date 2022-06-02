@@ -10,6 +10,7 @@ namespace Entities.Models
     {
         public int IdCeinture { get; set; }
         public string Couleur { get; set; }
+        public string? Illustration { get; set; }
         public int nbPresencesRequis { get; set; }
         public int IdDiscipline { get; set; }
     }

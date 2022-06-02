@@ -1,5 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateMembre]
 	@idMembre INT,
+	@photo VARCHAR(200),
 	@sexe VARCHAR(15),
 	@dateNaiss DATE,
 	@groupeSanguin VARCHAR(3),
@@ -10,7 +11,8 @@ AS
 BEGIN
 
 	UPDATE Membre
-	SET sexe = @sexe,
+	SET photo = @photo,
+		sexe = @sexe,
 		dateNaissance = @dateNaiss,
 		groupeSanguin = @groupeSanguin,
 		autoriseImage = @autoriseImage,
