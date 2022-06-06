@@ -7,7 +7,7 @@ namespace API_JTCN.Controllers
 {
     [Route("api/membres")]
     [ApiController]
-    public class MembreController : ControllerBase
+    public sealed class MembreController : ControllerBase
     {
         private readonly IServiceManager _service;
 

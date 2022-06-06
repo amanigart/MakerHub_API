@@ -19,6 +19,8 @@ EXEC RegisterCeinture 'Blanche', NULL, 0, 1;
 EXEC RegisterCeinture 'Blanche', NULL, 0, 2;
 EXEC RegisterCeinture 'Jaune', NULL, 25, 1;
 EXEC RegisterCeinture 'Jaune', NULL, 25, 2;
+EXEC RegisterCeinture 'Orange', NULL, 50, 1;
+EXEC RegisterCeinture 'Orange', NULL, 50, 2;
 
 -- Enregistrement d'un gestionnaire
 EXEC RegisterAdresse 'Rue de la dame', '21', 5100, 'Jambes';
@@ -38,3 +40,31 @@ EXEC RegisterMembre NULL, 'homme', '1985-04-23', NULL, 1, 57, 2;
 EXEC RegisterAppUtilisateur 'membre', 'membre', 2; 
 EXEC RegisterCeintureMembre 2, 1;
 EXEC RegisterCeintureMembre 2, 2;
+
+-- Enregistrement d'un membre
+EXEC RegisterAdresse 'Place Chanoine Descamps', '14/6', 5000, 'Namur';
+EXEC RegisterPersonne 'Huysen', 'Serge', 'adm@mail.com', '0471777126', 2;
+EXEC RegisterMembre NULL, 'homme', '1985-04-23', NULL, 1, 57, 3;
+EXEC RegisterAppUtilisateur 'membre', 'membre', 2; 
+EXEC RegisterCeintureMembre 3, 5;
+EXEC RegisterCeintureMembre 3, 6;
+
+-- Enregistrement d'un membre
+EXEC RegisterAdresse 'Place Chanoine Descamps', '14/6', 5000, 'Namur';
+EXEC RegisterPersonne 'Kulaksis', 'Konstantin', 'adm@mail.com', '0471777126', 2;
+EXEC RegisterMembre NULL, 'homme', '1985-04-23', NULL, 1, 57, 4;
+EXEC RegisterAppUtilisateur 'membre', 'membre', 2; 
+EXEC RegisterCeintureMembre 4, 1;
+EXEC RegisterCeintureMembre 4, 2;
+EXEC RegisterCeintureMembre 4, 3;
+EXEC RegisterCeintureMembre 4, 4;
+EXEC RegisterCeintureMembre 4, 5;
+EXEC RegisterCeintureMembre 4, 6;
+
+-- Enregistrement d'un membre
+EXEC RegisterAdresse 'Place Chanoine Descamps', '14/6', 5000, 'Namur';
+EXEC RegisterPersonne 'Maniet', 'Guillaume', 'adm@mail.com', '0471777126', 2;
+EXEC RegisterMembre NULL, 'homme', '1985-04-23', NULL, 1, 57, 5;
+EXEC RegisterAppUtilisateur 'membre', 'membre', 2; 
+EXEC RegisterCeintureMembre 5, 3;
+EXEC RegisterCeintureMembre 5, 4;
