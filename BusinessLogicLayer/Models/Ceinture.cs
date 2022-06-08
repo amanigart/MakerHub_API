@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Models
+namespace BusinessLogicLayer.Models
 {
-    public sealed class TopCeinture
+    public sealed class Ceinture
     {
-        public int Id { get; set; }
-        public int IdMembre { get; set; }
+        public string Discipline { get; set; }
         public string Couleur { get; set; }
     }
 }

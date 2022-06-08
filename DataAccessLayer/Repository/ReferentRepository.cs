@@ -43,11 +43,11 @@ namespace DataAccessLayer.Repository
             return _connection.ExecuteReader<Referent>(cmd);
         }
 
-        public Referent GetById(int id)
+        public Referent GetById(int idMembre)
         {
-            string query = "SELECT * FROM Referent WHERE id = @id";
+            string query = "SELECT * FROM Referent WHERE idMembre = @id";
             Command cmd = new Command(query);
-            cmd.AddParameter("id", id);
+            cmd.AddParameter("id", idMembre);
 
             return _connection.ExecuteReader<Referent>(cmd).SingleOrDefault();
 

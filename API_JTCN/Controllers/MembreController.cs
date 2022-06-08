@@ -23,26 +23,15 @@ namespace API_JTCN.Controllers
             return Ok(members);
         }
 
-        //[HttpGet("listeasync")]
-        //public async Task<IActionResult> GetMemberListAsync()
-        //{
-        //    var watch = System.Diagnostics.Stopwatch.StartNew();
-        //    var members = await _service.Membre.GetMemberListAsync();
-        //    watch.Stop();
-        //    System.Console.WriteLine(watch.ElapsedMilliseconds);
-
-        //    return Ok(members);
-        //}
-
-        [HttpDelete("supprimer")]
-        public IActionResult DeleteMember(int id)
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteMember([FromRoute] int id)
         {
             _service.Membre.DeleteMember(id);
             return Ok();
         }
 
-        [HttpGet("{id}")]
-        public IActionResult GetMemberDetails(int id)
+        [HttpGet("{id:int}")]
+        public IActionResult GetMemberDetails([FromRoute] int id)
         {
             try
             {

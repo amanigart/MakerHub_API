@@ -45,7 +45,7 @@ namespace DataAccessLayer.Repository
 
         public Contact GetById(int id)
         {
-            string query = "SELECT * FROM Contact WHERE id = @id";
+            string query = "SELECT * FROM Contact WHERE idMembre = @id";
             Command cmd = new Command(query);
             cmd.AddParameter("id", id);
 

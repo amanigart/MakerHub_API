@@ -42,36 +42,19 @@ namespace BusinessLogicLayer.Services
             return membersDto;
         }
 
-        //public async Task<IEnumerable<MembreBasicDto>> GetMemberListAsync()
-        //{
-        //    var members = await _repository.Membre.GetAllAsync();//.Select(m => new { IdMembre = m.IdMembre, IdPersonne = m.IdPersonne });
-        //    var persons = _repository.Personne.GetAll().Select(p => new { IdPersonne = p.IdPersonne, Nom = p.Nom, Prenom = p.Prenom });
-
-        //    var membersDto = members.Join(persons,
-        //            member => member.IdPersonne,
-        //            person => person.IdPersonne,
-        //            (member, person) =>
-        //                new MembreBasicDto
-        //                {
-        //                    IdMembre = member.IdMembre,
-        //                    Nom = person.Nom,
-        //                    Prenom = person.Prenom
-        //                });
-
-        //    return membersDto;
-        //}
-
+        // Récupérer les infos complètes d'un membre
         public MembreDetailDto GetMemberDetail(int id)
         {
             Membre member = _repository.Membre.GetById(id);
             if (member is null)
                 throw new MembreNotFoundException();
-            
-            var jiujitsuTopBelt = _repository.TopCeinture.GetTopCeinturesByMembre(member.IdMembre).Select(x => x.Couleur).FirstOrDefault();
+
             Personne person = _repository.Personne.GetById(member.IdPersonne);
             Adresse address = _repository.Adresse.GetById(person.IdAdresse);
+            IEnumerable<V_Ceinture> belts = _repository.V_Ceintures.GetAllByMember(member.IdMembre);
 
-            // TODO: ajouter contact + Referent
+            ContactDto contactDto = GetContact(member.IdMembre);
+            ReferentDto? referentDto = GetReferent(member.IdMembre, member.DateNaissance);
 
             return new MembreDetailDto()
             {
@@ -80,11 +63,13 @@ namespace BusinessLogicLayer.Services
                 Adresse = address,
                 Photo = member.Photo,
                 Sexe = member.Sexe,
-                DateNaissance = member.DateNaissance.ToString("dd/MM/yyyy"),
+                DateNaissance = member.DateNaissance, //.ToString("dd/MM/yyyy"),
                 GroupeSanguin = member.GroupeSanguin,
                 AutoriseImage = member.AutoriseImage,
                 BasePresences = member.BasePresences,
-                CeintureJiujitsu = jiujitsuTopBelt.ToString()
+                Ceintures = belts,
+                Contact = contactDto,
+                Referent = referentDto
             };
         }
 
@@ -96,5 +81,42 @@ namespace BusinessLogicLayer.Services
         // MembreCreation
 
         // MembreUpdate
+
+        // Récupérer le contact du membre
+        private ContactDto GetContact(int idMembre)
+        {
+            Contact contact = _repository.Contact.GetById(idMembre);
+            Personne contactPerson = _repository.Personne.GetById(contact.IdContact);
+            Adresse contactAdress = _repository.Adresse.GetById(contactPerson.IdAdresse);
+
+            return new ContactDto()
+            {
+                Id = contact.Id,
+                Personne = contactPerson,
+                Adresse = contactAdress,
+                LienAvecMembre = contact.LienAvecMembre
+            };
+        }
+
+        // Récupérer le référent du membre, si membre est mineur
+        private ReferentDto? GetReferent(int idMembre, DateTime dateNaiss)
+        {
+            DateTime today = DateTime.Now;
+
+            if (dateNaiss <= today.AddYears(-18))
+                return null;
+
+            Referent referent = _repository.Referent.GetById(idMembre);
+            Personne referentPerson = _repository.Personne.GetById(referent.IdReferent);
+            Adresse referentAddress = _repository.Adresse.GetById(referentPerson.IdAdresse);
+
+            return new ReferentDto()
+            {
+                Id = referent.Id,
+                Personne = referentPerson,
+                Adresse = referentAddress,
+                LienAvecMembre = referent.LienAvecMembre
+            };
+        }
     }
 }

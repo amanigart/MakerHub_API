@@ -27,7 +27,7 @@ namespace API_JTCN.Controllers
         /// * si erreur : message erreur personnalisé
         /// * sinon : token contenant: id utilisateur + rôle
         /// </returns>
-        [HttpPost]
+        [HttpPost("login")]
         public IActionResult Post([FromBody] LoginFormDto form)
         {
             try

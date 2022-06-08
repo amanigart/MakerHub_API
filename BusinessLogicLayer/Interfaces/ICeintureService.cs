@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Interfaces;
+using DataTransferObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace BusinessLogicLayer.Interfaces
 {
     public interface ICeintureService
     {
-
+        IEnumerable<CeintureDto> GetAllCeinutres();
+        CeintureDto GetCeintureById(int idCeinture);
     }
 }

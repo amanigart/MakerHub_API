@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Interfaces
 {
-    public interface ITopCeintureRepository
+    public interface IV_CeintureRepository
     {
-        IEnumerable<TopCeinture> GetTopCeintures();
-        IEnumerable<TopCeinture> GetTopCeinturesByMembre(int idMembre);
+        IEnumerable<V_Ceinture> GetAll();
+        IEnumerable<V_Ceinture> GetAllByMember(int idMembre);
     }
 }

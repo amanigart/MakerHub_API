@@ -10,5 +10,7 @@ namespace BusinessLogicLayer.Interfaces
     {
         IAuthenticationService Authentication { get; }
         IMembreService Membre { get; }
+        ICeintureService Ceinture { get; }
+        IHoraireService Horaire { get; }
     }
 }
