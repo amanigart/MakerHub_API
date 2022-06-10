@@ -18,7 +18,7 @@ namespace BusinessLogicLayer.Services
 
         public ServiceManager(IRepositoryManager repository, ILoggerManager logger)
         {
-            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(repository, logger));
+            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(repository));
             _membreService = new Lazy<IMembreService>(() => new MembreService(repository, logger));
             _ceintureService = new Lazy<ICeintureService>(() => new CeintureService(repository, logger));
             _horaireService = new Lazy<IHoraireService>(() => new HoraireService(repository, logger));

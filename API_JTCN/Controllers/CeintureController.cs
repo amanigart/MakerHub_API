@@ -10,11 +10,13 @@ namespace API_JTCN.Controllers
     {
         private readonly IServiceManager _service;
 
-        public CeintureController(IServiceManager service)
-        {
-            _service = service;
-        }
+        public CeintureController(IServiceManager service) => _service = service;
 
+        /// <summary>
+        /// Action permettant de récupérer la liste des ceintures.
+        /// </summary>
+        /// <response code="200">Retourne une collection comprenant les ceintures de jiu-jitsu et tai-jitsu.</response>
+        /// <response code="400">Retourne un message d'erreur.</response>
         [HttpGet("liste")]
         public IActionResult GetCeintures()
         {
@@ -29,6 +31,12 @@ namespace API_JTCN.Controllers
             }
         }
 
+        /// <summary>
+        /// Action permettant de récupérer le détail d'une ceinture sur base de son id.
+        /// </summary>
+        /// <param name="id">Prend un id de ceinture (idCeinture) en paramètre.</param>
+        /// <response code="200">Retourne un objet ceintureDto.</response>
+        /// <response code="400">Retourne un message d'erreur.</response>
         [HttpGet("{id:int}")]
         public IActionResult GetCeintureById([FromRoute] int id)
         {

@@ -76,40 +76,6 @@ namespace AdoToolbox
             }
         }
 
-        public IEnumerable<T> ExecuteReader<T>(Command cmd) where T : new()
-        {
-            using (SqlConnection connection = CreateConnection())
-            {
-                using (SqlCommand command = CreateCommand(cmd, connection))
-                {
-                    connection.Open();
-
-                    using (SqlDataReader reader = command.ExecuteReader())
-                    {
-                        Type type = typeof(T);
-                        var properties = type.GetProperties();
-
-                        while (reader.Read())
-                        {
-                            T genericObject = (T)Activator.CreateInstance(type);
-
-                            foreach (var p in properties)
-                            {
-                                var fieldValue = reader[p.Name];
-
-                                if (fieldValue is DBNull)
-                                    fieldValue = null;
-
-                                p.SetValue(genericObject, fieldValue);
-                            }
-
-                            yield return genericObject;
-                        }
-                    }
-                }
-            }
-        }
-
         //public async IAsyncEnumerable<T> ExecuteReaderAsync<T>(Command cmd) where T : new()
         //{
         //    using (SqlConnection connection = CreateConnection())
@@ -143,6 +109,40 @@ namespace AdoToolbox
         //        }
         //    }
         //}
+
+        public IEnumerable<T> ExecuteReader<T>(Command cmd) where T : new()
+        {
+            using (SqlConnection connection = CreateConnection())
+            {
+                using (SqlCommand command = CreateCommand(cmd, connection))
+                {
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        Type type = typeof(T);
+                        var properties = type.GetProperties();
+
+                        while (reader.Read())
+                        {
+                            var genericObject = Activator.CreateInstance(type);
+
+                            foreach (var p in properties)
+                            {
+                                var fieldValue = reader[p.Name];
+
+                                if (fieldValue is DBNull) 
+                                    fieldValue = null;
+
+                                p.SetValue(genericObject, fieldValue);
+                            }
+
+                            yield return (T)genericObject;
+                        }
+                    }
+                }
+            }
+        }
 
         public DataTable GetDataTable(Command cmd)
         {

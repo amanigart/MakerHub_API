@@ -23,6 +23,7 @@ namespace BusinessLogicLayer.Services
             _logger = logger;
         }
 
+        // Récupère la liste de tous les membres (actifs et inactifs)
         public IEnumerable<MembreDto> GetMemberList()
         {
             var members = _repository.Membre.GetAll().Select(m => new { IdMembre = m.IdMembre, IdPersonne = m.IdPersonne});
@@ -42,7 +43,7 @@ namespace BusinessLogicLayer.Services
             return membersDto;
         }
 
-        // Récupérer les infos complètes d'un membre
+        // Récupère les infos complètes d'un membre
         public MembreDetailDto GetMemberDetail(int id)
         {
             Membre member = _repository.Membre.GetById(id);
@@ -63,7 +64,7 @@ namespace BusinessLogicLayer.Services
                 Adresse = address,
                 Photo = member.Photo,
                 Sexe = member.Sexe,
-                DateNaissance = member.DateNaissance, //.ToString("dd/MM/yyyy"),
+                DateNaissance = member.DateNaissance,
                 GroupeSanguin = member.GroupeSanguin,
                 AutoriseImage = member.AutoriseImage,
                 BasePresences = member.BasePresences,
@@ -73,16 +74,13 @@ namespace BusinessLogicLayer.Services
             };
         }
 
-        public void DeleteMember(int id)
-        {
-            _repository.Membre.Delete(id);
-        }
+        // Supprime un membre sur la base de son id
+        public void DeleteMember(int idMembre) => _repository.Membre.Delete(idMembre);
 
         // MembreCreation
-
         // MembreUpdate
 
-        // Récupérer le contact du membre
+        // Récupère la personne de contact d'un membre, à partir de l'id de celui-ci
         private ContactDto GetContact(int idMembre)
         {
             Contact contact = _repository.Contact.GetById(idMembre);
@@ -98,7 +96,7 @@ namespace BusinessLogicLayer.Services
             };
         }
 
-        // Récupérer le référent du membre, si membre est mineur
+        // Récupère le référent légal du membre si ce dernier est mineur, sinon retourne un référent null
         private ReferentDto? GetReferent(int idMembre, DateTime dateNaiss)
         {
             DateTime today = DateTime.Now;

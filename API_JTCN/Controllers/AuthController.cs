@@ -22,12 +22,9 @@ namespace API_JTCN.Controllers
         /// Formulaire de login/authentification.
         /// </summary>
         /// <param name="form">Prend un LoginFormDto (Login, Password) en paramètre</param>
-        /// <returns>
-        /// Retourne :
-        /// * si erreur : message erreur personnalisé
-        /// * sinon : token contenant: id utilisateur + rôle
-        /// </returns>
-        [HttpPost("login")]
+        /// <response code="200">Retourne un token contenant: id utilisateur + rôle</response>
+        /// <response code="400">Retourne un message d'erreur si login ou mot de passe sont incorrects</response>
+        [HttpPost]
         public IActionResult Post([FromBody] LoginFormDto form)
         {
             try

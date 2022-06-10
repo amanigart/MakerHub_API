@@ -10,11 +10,13 @@ namespace API_JTCN.Controllers
     {
         private readonly IServiceManager _service;
 
-        public HoraireController(IServiceManager service)
-        {
-            _service = service;
-        }
+        public HoraireController(IServiceManager service) => _service = service;
 
+        /// <summary>
+        /// Action permettant de récupérer la liste deses horaires des jours d'entraînement.
+        /// </summary>
+        /// <response code="200">Retourne une collection d'horaires d'entraînement.</response>
+        /// <response code="400">Retourne un message d'erreur.</response>
         [HttpGet("liste")]
         public IActionResult GetHoraires()
         {
@@ -29,6 +31,12 @@ namespace API_JTCN.Controllers
             }
         }
 
+        /// <summary>
+        /// Action permettant de récupérer un horaire d'entraînement sur base de son id.
+        /// </summary>
+        /// <param name="id">Prend un id d'horaire (idHoraire) en paramètre, via la route.</param>
+        /// <response code="200">Retourne un horaire d'entraînement.</response>
+        /// <response code="400">Retourne un message d'erreur.</response>
         [HttpGet("{id:int}")]
         public IActionResult GetHoraire([FromRoute] int id)
         {

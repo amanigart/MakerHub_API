@@ -1,7 +1,6 @@
 ﻿using BusinessLogicLayer.Interfaces;
 using DataAccessLayer.Interfaces;
 using DataTransferObjects;
-using LoggerService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,14 +12,10 @@ namespace BusinessLogicLayer.Services
     public sealed class AuthenticationService : IAuthenticationService
     {
         private readonly IRepositoryManager _repository;
-        private readonly ILoggerManager _logger;
         
-        public AuthenticationService(IRepositoryManager repository, ILoggerManager logger)
-        {
-            _repository = repository;
-            _logger = logger;
-        }
+        public AuthenticationService(IRepositoryManager repository) => _repository = repository;
 
+        // Retourne au controller un utilisateur (idUtilisateur + role)
         public AppUtilisateurDto Login(string login, string password)
         {
             var user = _repository.Authentication.Login(login, password);
