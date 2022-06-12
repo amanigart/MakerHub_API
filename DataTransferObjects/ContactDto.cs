@@ -11,7 +11,6 @@ namespace DataTransferObjects
     {
         public int Id { get; init; }
         public Personne Personne { get; init; }
-        public Adresse Adresse { get; init; }
         public string LienAvecMembre { get; init; }
     }
 }

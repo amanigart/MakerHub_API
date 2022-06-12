@@ -22,25 +22,25 @@ namespace API_JTCN.Extensions
             });
         }
 
-        // Configuration LoggerService
+        // Configuration de l'injection de dépendance du LoggerService
         public static void ConfigureLoggerService(this IServiceCollection services)
         {
             services.AddSingleton<ILoggerManager, LoggerManager>();
         }
 
-        // Configuration Repository Manager
+        // Configuration de l'injection de dépendance du Repository Manager
         public static void ConfigureRepositoryManager(this IServiceCollection services)
         {
             services.AddScoped<IRepositoryManager, RepositoryManager>();
         }
 
-        // Configuration Service Manager
+        // Configuration de l'injection de dépendance du Service Manager
         public static void ConfigureServiceManager(this IServiceCollection services)
         {
             services.AddScoped<IServiceManager, ServiceManager>();
         }
 
-        // Configuration Service Authentication
+        // Configuration de l'injection de dépendance du Service Authentication
         public static void ConfigureAuthService(this IServiceCollection services)
         {
             services.AddScoped<ITokenService, TokenService>();

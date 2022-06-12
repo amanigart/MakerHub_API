@@ -14,7 +14,8 @@ namespace AdoToolbox
 
         public Command(string Command, bool isStoredProcedure = false)
         {
-            if (string.IsNullOrWhiteSpace(Command)) throw new ArgumentNullException();
+            if (string.IsNullOrWhiteSpace(Command)) 
+                throw new ArgumentNullException();
 
             Query = Command;
             IsStoredProcedure = isStoredProcedure;

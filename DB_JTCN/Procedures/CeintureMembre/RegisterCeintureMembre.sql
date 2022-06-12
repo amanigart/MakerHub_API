@@ -1,11 +1,12 @@
 ﻿CREATE PROCEDURE [dbo].[RegisterCeintureMembre]
 	@idMembre INT,
-	@idCeinture INT
+	@idCeinture INT,
+	@dateObtention DATE
 AS
 BEGIN
 
-	INSERT INTO CeintureMembre (idMembre, idCeinture)
+	INSERT INTO CeintureMembre (idMembre, idCeinture, dateObtention)
 	OUTPUT inserted.id
-	VALUES (@idMembre, @idCeinture)
+	VALUES (@idMembre, @idCeinture, @dateObtention)
 
 END

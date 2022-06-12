@@ -74,6 +74,8 @@
     <Folder Include="Procedures\Horaire" />
     <Folder Include="Procedures\Entrainement" />
     <Folder Include="Procedures\Presence" />
+    <Folder Include="Procedures\Tarif" />
+    <Folder Include="Procedures\Cotisation" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\AppUtilisateur.sql" />
@@ -118,11 +120,18 @@
     <Build Include="Procedures\Presence\RegisterPresence.sql" />
     <Build Include="Procedures\Presence\UpdatePresence.sql" />
     <Build Include="Views\V_Ceintures.sql" />
+    <Build Include="Tables\Tarif.sql" />
+    <Build Include="Tables\Cotisation.sql" />
+    <Build Include="Procedures\Tarif\RegisterTarif.sql" />
+    <Build Include="Procedures\Tarif\UpdateTarif.sql" />
+    <Build Include="Procedures\Cotisation\RegisterCotisation.sql" />
+    <Build Include="Procedures\Cotisation\UpdateCotisation.sql" />
+    <Build Include="Views\V_Cotisations.sql" />
+    <Build Include="Procedures\Cotisation\SwitchCotisationArchiveStatus.sql" />
+    <Build Include="Procedures\Cotisation\ArchiveCotisation.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB_JTCN.publish.xml" />
-    <None Include="DB_JTCN.publish_DB_MakerHub.xml" />
-    <None Include="DB_JTCN_1.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment_Register.sql" />

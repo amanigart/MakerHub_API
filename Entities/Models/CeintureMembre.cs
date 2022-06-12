@@ -11,5 +11,6 @@ namespace Entities.Models
         public int Id { get; set; }
         public int IdMembre { get; set; }
         public int IdCeinture { get; set; }
+        public DateTime DateObtention { get; set; }
     }
 }

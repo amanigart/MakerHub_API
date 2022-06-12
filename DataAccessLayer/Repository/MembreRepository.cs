@@ -19,11 +19,13 @@ namespace DataAccessLayer.Repository
         public int Create(Membre member)
         {
             Command cmd = new Command("RegisterMembre", true);
+            cmd.AddParameter("dateInscription", member.DateInscription);
             cmd.AddParameter("sexe", member.Sexe);
             cmd.AddParameter("dateNaiss", member.DateNaissance);
             cmd.AddParameter("groupeSanguin", member.GroupeSanguin);
             cmd.AddParameter("autoriseImage", member.AutoriseImage);
-            cmd.AddParameter("presences", member.BasePresences);
+            cmd.AddParameter("presences", member.BasePresencesRequises);
+            cmd.AddParameter("presencesTotal", member.BasePresencesTotal);
             cmd.AddParameter("idPersonne", member.IdPersonne);
 
             return (int)_connection.ExecuteScalar(cmd);
@@ -72,11 +74,13 @@ namespace DataAccessLayer.Repository
         {
             Command cmd = new Command("UpdateMembre", true);
             cmd.AddParameter("idMembre", member.IdMembre);
+            cmd.AddParameter("dateInscription", member.DateInscription);
             cmd.AddParameter("sexe", member.Sexe);
             cmd.AddParameter("dateNaiss", member.DateNaissance);
             cmd.AddParameter("groupeSanguin", member.GroupeSanguin);
             cmd.AddParameter("autoriseImage", member.AutoriseImage);
-            cmd.AddParameter("presences", member.BasePresences);
+            cmd.AddParameter("presences", member.BasePresencesRequises);
+            cmd.AddParameter("presencesTotal", member.BasePresencesTotal);
             cmd.AddParameter("idPersonne", member.IdPersonne);
 
             _connection.ExecuteNonQuery(cmd);

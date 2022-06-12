@@ -14,7 +14,6 @@ namespace DataAccessLayer.Interfaces
         IRepositoryBase<Adresse> Adresse { get; }
         IRepositoryBase<Personne> Personne { get; }
         IRepositoryBase<Membre> Membre { get; }
-        //IMembreRepository Membre { get; }
         IRepositoryBase<Contact> Contact { get; }
         IRepositoryBase<Referent> Referent { get; }
         IDisciplineRepository Discipline { get; }
@@ -24,5 +23,8 @@ namespace DataAccessLayer.Interfaces
         IHoraireRepository Horaire { get; }
         IEntrainementRepository Entrainement { get; }
         IPresenceRepository Presence { get; }
+        IRepositoryBase<Tarif> Tarif { get; }
+        IRepositoryBase<Cotisation> Cotisation { get; }
+        IV_CotisationsRepository V_Cotisations { get; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿CREATE TABLE [dbo].[CeintureMembre]
 (
 	id INT NOT NULL PRIMARY KEY IDENTITY,
+	dateObtention DATE NOT NULL,
 	idMembre INT NOT NULL,
 	idCeinture INT NOT NULL,
 

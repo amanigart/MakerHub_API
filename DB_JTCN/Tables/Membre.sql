@@ -1,13 +1,15 @@
 ﻿CREATE TABLE [dbo].[Membre]
 (
 	idMembre INT NOT NULL PRIMARY KEY IDENTITY,
+	dateInscription DATE NOT NULL,
 	photo VARCHAR(200),
 	sexe VARCHAR(15) NOT NULL,
 	dateNaissance DATE NOT NULL,
 	groupeSanguin VARCHAR(3),
 	autoriseImage BIT NOT NULL,
-	basePresences INT NOT NULL,
-	estActif BIT DEFAULT 0,
+	basePresencesRequises INT NOT NULL DEFAULT 0,
+	basePresencesTotal INT NOT NULL DEFAULT 0,
+	estActif BIT DEFAULT 1,
 	idPersonne INT NOT NULL,
 	idUtilisateur INT,
 

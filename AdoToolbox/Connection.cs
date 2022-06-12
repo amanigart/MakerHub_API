@@ -130,7 +130,7 @@ namespace AdoToolbox
                             foreach (var p in properties)
                             {
                                 var fieldValue = reader[p.Name];
-
+                                
                                 if (fieldValue is DBNull) 
                                     fieldValue = null;
 

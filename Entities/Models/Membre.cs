@@ -9,12 +9,14 @@ namespace Entities.Models
     public sealed class Membre
     {
         public int IdMembre { get; set; }
+        public DateTime DateInscription { get; set; }
         public string? Photo { get; set; }
         public string Sexe { get; set; }
         public DateTime DateNaissance { get; set; }
         public string? GroupeSanguin { get; set; }
         public bool AutoriseImage { get; set; }
-        public int BasePresences { get; set; }
+        public int BasePresencesRequises { get; set; }
+        public int BasePresencesTotal { get; set; }
         public bool EstActif { get; set; }
         public int IdPersonne { get; set; }
         public int? IdUtilisateur { get; set; }

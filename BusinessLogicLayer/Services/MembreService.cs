@@ -23,43 +23,56 @@ namespace BusinessLogicLayer.Services
             _logger = logger;
         }
 
-        // Récupère la liste de tous les membres (actifs et inactifs)
-        public IEnumerable<MembreDto> GetMemberList()
+        // Récupère la liste de tous les membres (actifs et inactifs), avec leurs infos de base (idMembre, nom, prénom)
+        public IEnumerable<MembreForList> GetMemberList()
         {
-            var members = _repository.Membre.GetAll().Select(m => new { IdMembre = m.IdMembre, IdPersonne = m.IdPersonne});
+            var members = _repository.Membre.GetAll().Select(m => new { IdMembre = m.IdMembre, IdPersonne = m.IdPersonne, EstActif = m.EstActif });
             var persons = _repository.Personne.GetAll().Select(p => new { IdPersonne = p.IdPersonne, Nom = p.Nom, Prenom = p.Prenom});
 
             var membersDto = members.Join(persons,
                     member => member.IdPersonne,
                     person => person.IdPersonne,
                     (member, person) => 
-                        new MembreDto
+                        new MembreForList
                         {
                             IdMembre = member.IdMembre,
                             Nom = person.Nom,
-                            Prenom = person.Prenom
+                            Prenom = person.Prenom,
+                            EstActif = member.EstActif
                         });
 
             return membersDto;
         }
 
-        // Récupère les infos complètes d'un membre
-        public MembreDetailDto GetMemberDetail(int id)
+        // Récupère les infos complètes d'un membre à partir de son id (idMembre)
+        public MembreDto GetMemberDetail(int id)
         {
             Membre member = _repository.Membre.GetById(id);
             if (member is null)
                 throw new MembreNotFoundException();
 
+            bool isAdult = CheckIfMemberIsAdult(member.DateNaissance);
             Personne person = _repository.Personne.GetById(member.IdPersonne);
-            Adresse address = _repository.Adresse.GetById(person.IdAdresse);
+            Adresse? address = null;
+            if (isAdult)
+                _repository.Adresse.GetById((int)person.IdAdresse);
+
             IEnumerable<V_Ceinture> belts = _repository.V_Ceintures.GetAllByMember(member.IdMembre);
 
             ContactDto contactDto = GetContact(member.IdMembre);
-            ReferentDto? referentDto = GetReferent(member.IdMembre, member.DateNaissance);
+            ReferentDto? referentDto = null;
+            if (!isAdult)
+                referentDto = GetReferent(member.IdMembre);
 
-            return new MembreDetailDto()
+            IEnumerable<V_Cotisations>? cotisations = _repository.V_Cotisations.GetAllByMember((int)member.IdMembre);
+            if (cotisations is null)
+                throw new CotisationNotFoundException();
+
+            return new MembreDto()
             {
                 IdMembre = member.IdMembre,
+                DateInscription = member.DateInscription,
+                EstActif = member.EstActif,
                 Personne = person,
                 Adresse = address,
                 Photo = member.Photo,
@@ -67,10 +80,12 @@ namespace BusinessLogicLayer.Services
                 DateNaissance = member.DateNaissance,
                 GroupeSanguin = member.GroupeSanguin,
                 AutoriseImage = member.AutoriseImage,
-                BasePresences = member.BasePresences,
+                BasePresencesRequises = member.BasePresencesRequises,
+                BasePresencesTotal = member.BasePresencesTotal,
                 Ceintures = belts,
                 Contact = contactDto,
-                Referent = referentDto
+                Referent = referentDto,
+                Cotisations = cotisations
             };
         }
 
@@ -85,28 +100,21 @@ namespace BusinessLogicLayer.Services
         {
             Contact contact = _repository.Contact.GetById(idMembre);
             Personne contactPerson = _repository.Personne.GetById(contact.IdContact);
-            Adresse contactAdress = _repository.Adresse.GetById(contactPerson.IdAdresse);
 
             return new ContactDto()
             {
                 Id = contact.Id,
                 Personne = contactPerson,
-                Adresse = contactAdress,
                 LienAvecMembre = contact.LienAvecMembre
             };
         }
 
         // Récupère le référent légal du membre si ce dernier est mineur, sinon retourne un référent null
-        private ReferentDto? GetReferent(int idMembre, DateTime dateNaiss)
+        private ReferentDto GetReferent(int idMembre)
         {
-            DateTime today = DateTime.Now;
-
-            if (dateNaiss <= today.AddYears(-18))
-                return null;
-
             Referent referent = _repository.Referent.GetById(idMembre);
             Personne referentPerson = _repository.Personne.GetById(referent.IdReferent);
-            Adresse referentAddress = _repository.Adresse.GetById(referentPerson.IdAdresse);
+            Adresse referentAddress = _repository.Adresse.GetById((int)referentPerson.IdAdresse);
 
             return new ReferentDto()
             {
@@ -115,6 +123,17 @@ namespace BusinessLogicLayer.Services
                 Adresse = referentAddress,
                 LienAvecMembre = referent.LienAvecMembre
             };
+        }
+
+        // Vérifie si un membre est adulte ou mineur (renvoie true si adulte)
+        private bool CheckIfMemberIsAdult(DateTime birthDate)
+        {
+            DateTime today = DateTime.Now;
+
+            if (birthDate > today.AddYears(-18))
+                return false;
+
+            return true;
         }
     }
 }

@@ -12,5 +12,6 @@ namespace Entities.Models
         public int IdMembre { get; set; }
         public string Discipline { get; set; }
         public string Couleur { get; set; }
+        public DateTime DateObtention { get; set; }
     }
 }

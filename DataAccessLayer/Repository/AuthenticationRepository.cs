@@ -26,7 +26,7 @@ namespace DataAccessLayer.Repository
                 cmd.AddParameter("login", login);
                 cmd.AddParameter("passwd", passwd);
 
-                return _connection.ExecuteReader<AppUtilisateur>(cmd).SingleOrDefault();  // null check en db
+                return _connection.ExecuteReader<AppUtilisateur>(cmd).Single();  // null check en db
             }
             catch (SqlException ex)
             {

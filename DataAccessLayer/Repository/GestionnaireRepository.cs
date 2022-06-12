@@ -18,6 +18,7 @@ namespace DataAccessLayer.Repository
             : base(config) 
         { }
 
+        // Enregistre un nouveau gestionnaire
         public int Create(Gestionnaire gestionnaire)
         {
             Command cmd = new Command("RegisterGestionnaire", true);
@@ -26,6 +27,7 @@ namespace DataAccessLayer.Repository
             return (int)_connection.ExecuteScalar(cmd);
         }
 
+        // Récupère la liste de tous les gestionnaires existants
         public IEnumerable<Gestionnaire> GetAll()
         {
             string query = "SELECT * FROM Gestionnaire";
@@ -34,6 +36,7 @@ namespace DataAccessLayer.Repository
             return _connection.ExecuteReader<Gestionnaire>(cmd);
         }
 
+        // Récupère un gestionnaire su base de son id (idGestionnaire)
         public Gestionnaire GetById(int id)
         {
             Command cmd = new Command("GetGestionnaireById", true);
@@ -42,6 +45,7 @@ namespace DataAccessLayer.Repository
             return _connection.ExecuteReader<Gestionnaire>(cmd).SingleOrDefault();
         }
 
+        // Supprime un gestionnaire sur base de son id (idGestionnaire)
         public void Delete(int id)
         {
             string query = "DELETE FROM Gestionnaire WHERE idGestionnaire = @id";
@@ -51,11 +55,13 @@ namespace DataAccessLayer.Repository
             _connection.ExecuteNonQuery(cmd);
         }
 
+        // Mise à jour d'un gestionnaire
         public void Update(Gestionnaire gestionnaire)
         {
             throw new NotImplementedException();
         }
 
+        // Vérifie si un gestionnaire existe sur base d'un id de membre (idMembre)
         public bool CheckIfIsGestionnaire(int id)
         {
             Command cmd = new Command("CheckIfIsGestionnaire", true);

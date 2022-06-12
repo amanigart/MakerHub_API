@@ -52,7 +52,7 @@ namespace API_JTCN.Controllers
         {
             try
             {
-                MembreDetailDto member = _service.Membre.GetMemberDetail(id);
+                MembreDto member = _service.Membre.GetMemberDetail(id);
                 return Ok(member);
             }
             catch (Exception ex)
