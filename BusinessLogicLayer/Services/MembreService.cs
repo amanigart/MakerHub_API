@@ -23,8 +23,14 @@ namespace BusinessLogicLayer.Services
             _logger = logger;
         }
 
+        // Enregistre un nouveau membre
+        public void CreateNewMember(MembreForCreationDto member)
+        {
+
+        }
+
         // Récupère la liste de tous les membres (actifs et inactifs), avec leurs infos de base (idMembre, nom, prénom)
-        public IEnumerable<MembreForList> GetMemberList()
+        public IEnumerable<MembreForListDto> GetMemberList()
         {
             var members = _repository.Membre.GetAll().Select(m => new { IdMembre = m.IdMembre, IdPersonne = m.IdPersonne, EstActif = m.EstActif });
             var persons = _repository.Personne.GetAll().Select(p => new { IdPersonne = p.IdPersonne, Nom = p.Nom, Prenom = p.Prenom});
@@ -33,7 +39,7 @@ namespace BusinessLogicLayer.Services
                     member => member.IdPersonne,
                     person => person.IdPersonne,
                     (member, person) => 
-                        new MembreForList
+                        new MembreForListDto
                         {
                             IdMembre = member.IdMembre,
                             Nom = person.Nom,
@@ -53,16 +59,12 @@ namespace BusinessLogicLayer.Services
 
             bool isAdult = CheckIfMemberIsAdult(member.DateNaissance);
             Personne person = _repository.Personne.GetById(member.IdPersonne);
-            Adresse? address = null;
-            if (isAdult)
-                _repository.Adresse.GetById((int)person.IdAdresse);
+            Adresse? address = (isAdult) ? _repository.Adresse.GetById((int)person.IdAdresse) : null;
 
             IEnumerable<V_Ceinture> belts = _repository.V_Ceintures.GetAllByMember(member.IdMembre);
 
             ContactDto contactDto = GetContact(member.IdMembre);
-            ReferentDto? referentDto = null;
-            if (!isAdult)
-                referentDto = GetReferent(member.IdMembre);
+            ReferentDto? referentDto = (isAdult) ? null : referentDto = GetReferent(member.IdMembre);
 
             IEnumerable<V_Cotisations>? cotisations = _repository.V_Cotisations.GetAllByMember((int)member.IdMembre);
             if (cotisations is null)

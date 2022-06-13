@@ -129,6 +129,7 @@
     <Build Include="Views\V_Cotisations.sql" />
     <Build Include="Procedures\Cotisation\SwitchCotisationArchiveStatus.sql" />
     <Build Include="Procedures\Cotisation\ArchiveCotisation.sql" />
+    <Build Include="Procedures\Utilisateur\GetAppUtilisateurInfos.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB_JTCN.publish.xml" />

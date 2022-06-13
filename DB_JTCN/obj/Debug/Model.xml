@@ -1822,6 +1822,77 @@ END]]></Value>
 			</Relationship>
 			<AttachedAnnotation Disambiguator="35" />
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[GetAppUtilisateurInfos]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+
+	SELECT p.prenom, p.nom, p.email
+	FROM Membre m
+	JOIN Personne p ON (p.idPersonne = m.idPersonne)
+	WHERE m.idUtilisateur = @idUtilisateur
+
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Membre]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Personne]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Personne].[idPersonne]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Membre].[idPersonne]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Personne].[prenom]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Personne].[nom]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Personne].[email]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Membre].[idUtilisateur]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[GetAppUtilisateurInfos].[@idUtilisateur]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[GetAppUtilisateurInfos].[@idUtilisateur]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="230" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[GetAppUtilisateurInfos]&#xD;&#xA;&#x9;@idUtilisateur INT&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlProcedure" Name="[dbo].[GetGestionnaireById]">
 			<Property Name="BodyScript">
 				<Value><![CDATA[

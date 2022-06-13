@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataTransferObjects
 {
-    public sealed class MembreForList
+    public sealed class MembreForListDto
     {
         public int IdMembre { get; init; }
         public string Nom { get; init; }

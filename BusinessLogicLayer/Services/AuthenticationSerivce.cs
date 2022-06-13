@@ -15,7 +15,7 @@ namespace BusinessLogicLayer.Services
         
         public AuthenticationService(IRepositoryManager repository) => _repository = repository;
 
-        // Retourne au controller un utilisateur (idUtilisateur + role)
+        // Retourne des infos sur l'utilisateur pour construire son token (idUtilisateur + role)
         public AppUtilisateurDto Login(string login, string password)
         {
             var user = _repository.Authentication.Login(login, password);

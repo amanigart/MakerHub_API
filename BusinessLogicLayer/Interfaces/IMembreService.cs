@@ -9,7 +9,7 @@ namespace BusinessLogicLayer.Interfaces
 {
     public interface IMembreService
     {
-        IEnumerable<MembreForList> GetMemberList();
+        IEnumerable<MembreForListDto> GetMemberList();
         //Task<IEnumerable<MembreBasicDto>> GetMemberListAsync();
         MembreDto GetMemberDetail(int id);
         void DeleteMember(int id);

@@ -60,5 +60,25 @@ namespace API_JTCN.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        /// <summary>
+        /// Action permettant d'inscrire un nouveau membre.
+        /// </summary>
+        /// <param name="member"></param>
+        /// <response code="200">Retourne un code 200.</response>
+        /// <response code="400">Retourne un message d'erreur.</response>
+        [HttpPost("inscription")]
+        public IActionResult CreateMember([FromBody] MembreForCreationDto member)
+        {
+            try
+            {
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
