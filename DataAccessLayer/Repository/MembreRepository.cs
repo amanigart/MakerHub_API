@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public sealed class MembreRepository : RepositoryBase, IRepositoryBase<Membre>
+    public sealed class MembreRepository : RepositoryBase, IMembreRepository
     {
         public MembreRepository(IConfiguration config) 
             : base(config)
@@ -48,19 +48,6 @@ namespace DataAccessLayer.Repository
             return _connection.ExecuteReader<Membre>(cmd);
         }
 
-        //public async Task<IEnumerable<Membre>> GetAllAsync() 
-        //{
-        //    string query = "SELECT * FROM Membre";
-        //    Command cmd = new Command(query);
-
-        //    List<Membre> members = new();
-
-        //    await foreach(var member in _connection.ExecuteReaderAsync<Membre>(cmd))
-        //        members.Add(member);
-
-        //    return members;
-        //}
-
         public Membre GetById(int id)
         {
             string query = "SELECT * FROM Membre WHERE idMembre = @idMembre";
@@ -84,7 +71,11 @@ namespace DataAccessLayer.Repository
             cmd.AddParameter("idPersonne", member.IdPersonne);
 
             _connection.ExecuteNonQuery(cmd);
+        }
 
+        public void DisableMember(int idMembre)
+        {
+            throw new NotImplementedException();
         }
     }
 }

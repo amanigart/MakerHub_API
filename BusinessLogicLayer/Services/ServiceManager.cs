@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.Interfaces;
+﻿using AutoMapper;
+using BusinessLogicLayer.Interfaces;
 using DataAccessLayer.Interfaces;
 using LoggerService;
 using System;
@@ -17,10 +18,10 @@ namespace BusinessLogicLayer.Services
         private readonly Lazy<IHoraireService> _horaireService;
         private readonly Lazy<ITarifService> _tarifService;
 
-        public ServiceManager(IRepositoryManager repository, ILoggerManager logger)
+        public ServiceManager(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
             _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(repository));
-            _membreService = new Lazy<IMembreService>(() => new MembreService(repository, logger));
+            _membreService = new Lazy<IMembreService>(() => new MembreService(repository, logger, mapper));
             _ceintureService = new Lazy<ICeintureService>(() => new CeintureService(repository, logger));
             _horaireService = new Lazy<IHoraireService>(() => new HoraireService(repository, logger));
             _tarifService = new Lazy<ITarifService>(() => new TarifService(repository));

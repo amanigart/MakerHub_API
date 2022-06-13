@@ -8,17 +8,10 @@ namespace DataTransferObjects
 {
     public sealed class MembreForCreationDto
     {
-        public DateTime DateInscription { get; init; }
-        public string? Photo { get; init; }
-        public string Sexe { get; init; }
-        public DateTime DateNaissance { get; init; }
-        public string GroupeSanguin { get; init; }
-        public bool AutoriseImage { get; init; }
-        public int BasePresencesRequises { get; init; }
-        public int BasePresencesTotal { get; init; }
+        public MembreInfosForCreationDto MembreInfos { get; init; }
         public PersonneForCreationDto Personne { get; init; }
         public AdresseForCreationDto Adresse { get; init; }
-        // public xxx Ceintures { get; init; }
+        // public IEnumerable<CeintureMembreDto> Ceintures { get; init; }
         public ContactForCreationDto Contact { get; init; }
         public ReferentForCreationDto Referent { get; init; }
         public CotisationForCreationDto Cotisation { get; init; }

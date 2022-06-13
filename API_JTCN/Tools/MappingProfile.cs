@@ -8,7 +8,11 @@ namespace API_JTCN.Tools
     {
         public MappingProfile()
         {
-            //CreateMap<AppUtilisateur, AppUtilisateurDto>()
+            CreateMap<AdresseForCreationDto, Adresse>(); 
+            CreateMap<PersonneForCreationDto, Personne>();
+            CreateMap<MembreInfosForCreationDto, Membre>();
+            CreateMap<CeintureMembreDto, CeintureMembre>();
+            CreateMap<CotisationForCreationDto, Cotisation>();
         }
     }
 }

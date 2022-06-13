@@ -34,12 +34,12 @@ namespace API_JTCN.Controllers
         /// <param name="id">Prend un id de membre (idMembre) en paramètre.</param>
         /// <response code="200">Ne retourne rien.</response>
         /// <response code="400">Retourne un message d'erreur.</response>
-        [HttpDelete("{id:int}")]
-        public IActionResult DeleteMember([FromRoute] int id)
-        {
-            _service.Membre.DeleteMember(id);
-            return Ok();
-        }
+        //[HttpDelete("{id:int}")]
+        //public IActionResult DeleteMember([FromRoute] int id)
+        //{
+        //    _service.Membre.DeleteMember(id);
+        //    return Ok();
+        //}
 
         /// <summary>
         /// Action permettant de récupérer les infos détaillées d'un membre.
@@ -72,6 +72,7 @@ namespace API_JTCN.Controllers
         {
             try
             {
+                _service.Membre.CreateNewMember(member);
                 return Ok();
             }
             catch (Exception ex)

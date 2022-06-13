@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.Interfaces;
+﻿using AutoMapper;
+using BusinessLogicLayer.Interfaces;
 using DataAccessLayer.Interfaces;
 using DataTransferObjects;
 using Entities.Exceptions;
@@ -14,20 +15,44 @@ namespace BusinessLogicLayer.Services
 {
     public sealed class MembreService : IMembreService
     {
-        public readonly IRepositoryManager _repository;
+        private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
+        private readonly IMapper _mapper;
 
-        public MembreService(IRepositoryManager repository, ILoggerManager logger)
+        public MembreService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
+            _mapper = mapper;
         }
 
-        // Enregistre un nouveau membre
-        public void CreateNewMember(MembreForCreationDto member)
+
+        // Inscription d'un nouveau membre
+        public void CreateNewMember(MembreForCreationDto newMember)
         {
+            bool isAdult = CheckIfMemberIsAdult(newMember.MembreInfos.DateNaissance);
 
+            Adresse address = _mapper.Map<Adresse>(newMember.Adresse);
+            int? addressId = (isAdult) ? _repository.Adresse.Create(address) : null;
+
+            Personne person = _mapper.Map<Personne>(newMember.Personne);
+            person.IdAdresse = addressId;
+            int personId = _repository.Personne.Create(person);
+
+            Membre member = _mapper.Map<Membre>(newMember.MembreInfos);
+            member.IdPersonne = personId;
+            int memberId = _repository.Membre.Create(member);
+
+            CreateContactForMember(newMember.Contact, memberId);
+            if (!isAdult) CreateReferentForMember(newMember.Referent, memberId);
+
+            Cotisation membership = _mapper.Map<Cotisation>(newMember.Cotisation);
+            membership.DateFin = GetCotisationEndDate(membership.DateDebut, newMember.Cotisation.Duree);
+            membership.IdMembre = memberId;
+            _repository.Cotisation.Create(membership);
+             
         }
+
 
         // Récupère la liste de tous les membres (actifs et inactifs), avec leurs infos de base (idMembre, nom, prénom)
         public IEnumerable<MembreForListDto> GetMemberList()
@@ -49,6 +74,7 @@ namespace BusinessLogicLayer.Services
 
             return membersDto;
         }
+
 
         // Récupère les infos complètes d'un membre à partir de son id (idMembre)
         public MembreDto GetMemberDetail(int id)
@@ -91,11 +117,13 @@ namespace BusinessLogicLayer.Services
             };
         }
 
+
         // Supprime un membre sur la base de son id
         public void DeleteMember(int idMembre) => _repository.Membre.Delete(idMembre);
 
-        // MembreCreation
+
         // MembreUpdate
+
 
         // Récupère la personne de contact d'un membre, à partir de l'id de celui-ci
         private ContactDto GetContact(int idMembre)
@@ -110,6 +138,7 @@ namespace BusinessLogicLayer.Services
                 LienAvecMembre = contact.LienAvecMembre
             };
         }
+
 
         // Récupère le référent légal du membre si ce dernier est mineur, sinon retourne un référent null
         private ReferentDto GetReferent(int idMembre)
@@ -127,7 +156,8 @@ namespace BusinessLogicLayer.Services
             };
         }
 
-        // Vérifie si un membre est adulte ou mineur (renvoie true si adulte)
+
+        // Vérifie si un membre est adulte ou mineur (renvoie true si adulte, false si mineur)
         private bool CheckIfMemberIsAdult(DateTime birthDate)
         {
             DateTime today = DateTime.Now;
@@ -136,6 +166,57 @@ namespace BusinessLogicLayer.Services
                 return false;
 
             return true;
+        }
+
+
+        // Enregistre un nouveau contact lors de la création d'un membre
+        private void CreateContactForMember(ContactForCreationDto newContact, int memberId)
+        {
+            Personne contactPerson = _mapper.Map<Personne>(newContact.Personne);
+            int contactId = _repository.Personne.Create(contactPerson);
+
+            Contact contact = new()
+            {
+                IdMembre = memberId,
+                IdContact = contactId,
+                LienAvecMembre = newContact.LienAvecMembre
+            };
+            _repository.Contact.Create(contact);
+        }
+
+
+        // Enregistre un nouveau référent lors de la création d'un membre
+        private void CreateReferentForMember(ReferentForCreationDto newReferent, int memberId)
+        {
+            Adresse referentAddress = _mapper.Map<Adresse>(newReferent.Adresse);
+            int addressId = _repository.Adresse.Create(referentAddress);
+
+            Personne referentPerson = _mapper.Map<Personne>(newReferent.Personne);
+            referentPerson.IdAdresse = addressId;
+            int referentId = _repository.Personne.Create(referentPerson);
+
+            Referent referent = new()
+            {
+                IdMembre = memberId,
+                IdReferent = referentId,
+                LienAvecMembre = newReferent.LienAvecMembre
+            };
+            _repository.Referent.Create(referent);
+        }
+
+
+        // Calcule la date de fin d'une cotisation 
+        private DateTime GetCotisationEndDate(DateTime startDate, string duration)
+        {
+            switch (duration)
+            {
+                case "année":
+                    return startDate.AddYears(1);
+                case "trimestre":
+                    return startDate.AddMonths(3);
+                default:
+                    return startDate.AddDays(1);
+            }
         }
     }
 }
