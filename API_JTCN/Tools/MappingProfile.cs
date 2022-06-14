@@ -13,6 +13,7 @@ namespace API_JTCN.Tools
             CreateMap<MembreInfosForCreationDto, Membre>();
             CreateMap<CeintureMembreDto, CeintureMembre>();
             CreateMap<CotisationForCreationDto, Cotisation>();
+            CreateMap<V_Cotisations, CotisationDto>();
         }
     }
 }

@@ -13,5 +13,6 @@ namespace BusinessLogicLayer.Interfaces
         ICeintureService Ceinture { get; }
         IHoraireService Horaire { get; }
         ITarifService Tarif { get; }
+        ICotisationService Cotisation { get; }
     }
 }

@@ -17,6 +17,7 @@ namespace BusinessLogicLayer.Services
         private readonly Lazy<ICeintureService> _ceintureService;
         private readonly Lazy<IHoraireService> _horaireService;
         private readonly Lazy<ITarifService> _tarifService;
+        private readonly Lazy<ICotisationService> _cotisationService;
 
         public ServiceManager(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
@@ -25,6 +26,7 @@ namespace BusinessLogicLayer.Services
             _ceintureService = new Lazy<ICeintureService>(() => new CeintureService(repository, logger));
             _horaireService = new Lazy<IHoraireService>(() => new HoraireService(repository, logger));
             _tarifService = new Lazy<ITarifService>(() => new TarifService(repository));
+            _cotisationService = new Lazy<ICotisationService>(() => new CotisationService(repository, logger, mapper));
         }
 
         public IAuthenticationService Authentication => _authenticationService.Value;
@@ -32,5 +34,6 @@ namespace BusinessLogicLayer.Services
         public ICeintureService Ceinture => _ceintureService.Value;
         public IHoraireService Horaire => _horaireService.Value;
         public ITarifService Tarif => _tarifService.Value;
+        public ICotisationService Cotisation => _cotisationService.Value;
     }
 }

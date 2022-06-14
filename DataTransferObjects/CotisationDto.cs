@@ -15,6 +15,10 @@ namespace DataTransferObjects
         public bool EstPaye { get; init; }
         public bool EstArchive { get; init; }
         public int IdMembre { get; init; }
-        public Tarif Tarif { get; init; }
+        public int IdTarif { get; init; }
+        public double Prix { get; init; }
+        public string Duree { get; init; }
+        public string Nom { get; init; }
+        public string Prenom { get; init; }
     }
 }
