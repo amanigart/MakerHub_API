@@ -21,7 +21,7 @@ namespace DataAccessLayer.Repository
             Command cmd = new Command("RegisterContact", true);
             cmd.AddParameter("idMembre", contact.IdMembre);
             cmd.AddParameter("idContact", contact.IdContact);
-            cmd.AddParameter("lienAvecMembre", contact.LienAvecMembre);
+            cmd.AddParameter("lienMembre", contact.LienAvecMembre);
 
             return (int)_connection.ExecuteScalar(cmd);
         }

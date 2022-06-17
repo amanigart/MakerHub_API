@@ -50,12 +50,12 @@
 			</Property>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[Cotisation]" />
+					<References Name="[dbo].[Membre]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="ForColumn">
 				<Entry>
-					<References Name="[dbo].[Cotisation].[estArchive]" />
+					<References Name="[dbo].[Membre].[basePresencesRequises]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="3" />
@@ -71,26 +71,10 @@
 			</Relationship>
 			<Relationship Name="ForColumn">
 				<Entry>
-					<References Name="[dbo].[Membre].[basePresencesRequises]" />
-				</Entry>
-			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
-		</Element>
-		<Element Type="SqlDefaultConstraint">
-			<Property Name="DefaultExpressionScript">
-				<Value><![CDATA[0]]></Value>
-			</Property>
-			<Relationship Name="DefiningTable">
-				<Entry>
-					<References Name="[dbo].[Membre]" />
-				</Entry>
-			</Relationship>
-			<Relationship Name="ForColumn">
-				<Entry>
 					<References Name="[dbo].[Membre].[basePresencesTotal]" />
 				</Entry>
 			</Relationship>
-			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="4" />
 		</Element>
 		<Element Type="SqlDefaultConstraint">
 			<Property Name="DefaultExpressionScript">
@@ -104,6 +88,22 @@
 			<Relationship Name="ForColumn">
 				<Entry>
 					<References Name="[dbo].[Membre].[estActif]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="5" />
+		</Element>
+		<Element Type="SqlDefaultConstraint">
+			<Property Name="DefaultExpressionScript">
+				<Value><![CDATA[0]]></Value>
+			</Property>
+			<Relationship Name="DefiningTable">
+				<Entry>
+					<References Name="[dbo].[Cotisation]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="ForColumn">
+				<Entry>
+					<References Name="[dbo].[Cotisation].[estArchive]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="6" />
@@ -380,7 +380,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Tarif].[idTarif]" />
+								<References Name="[dbo].[Membre].[idMembre]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -388,7 +388,7 @@
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[Tarif]" />
+					<References Name="[dbo].[Membre]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="21" />
@@ -418,7 +418,7 @@
 					<Element Type="SqlIndexedColumnSpecification">
 						<Relationship Name="Column">
 							<Entry>
-								<References Name="[dbo].[Membre].[idMembre]" />
+								<References Name="[dbo].[Tarif].[idTarif]" />
 							</Entry>
 						</Relationship>
 					</Element>
@@ -426,7 +426,7 @@
 			</Relationship>
 			<Relationship Name="DefiningTable">
 				<Entry>
-					<References Name="[dbo].[Membre]" />
+					<References Name="[dbo].[Tarif]" />
 				</Entry>
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="23" />
@@ -1056,7 +1056,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="3" />
+						<AttachedAnnotation Disambiguator="6" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2213,7 +2213,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="23" />
+						<AttachedAnnotation Disambiguator="21" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2327,7 +2327,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="4" />
+						<AttachedAnnotation Disambiguator="3" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2344,7 +2344,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="5" />
+						<AttachedAnnotation Disambiguator="4" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -2360,7 +2360,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="6" />
+						<AttachedAnnotation Disambiguator="5" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -3714,7 +3714,7 @@ END]]></Value>
 BEGIN
 	INSERT INTO Membre (photo, dateInscription, sexe, dateNaissance, groupeSanguin, autoriseImage, basePresencesRequises, basePresencesTotal, idPersonne)
 	OUTPUT inserted.idMembre
-	VALUES (@photo, @dateInscription, @sexe, @dateNaiss, @groupeSanguin, @autoriseImage, @presences, @presencesTotal, @idPersonne)
+	VALUES (NULL, @dateInscription, @sexe, @dateNaiss, @groupeSanguin, @autoriseImage, @presences, @presencesTotal, @idPersonne)
 END]]></Value>
 			</Property>
 			<Property Name="IsAnsiNullsOn" Value="True" />
@@ -3748,9 +3748,6 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Membre].[idPersonne]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[RegisterMembre].[@photo]" />
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[RegisterMembre].[@dateInscription]" />
@@ -3926,7 +3923,7 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="561" />
+				<Property Name="Length" Value="559" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[RegisterMembre]&#xD;&#xA;&#x9;@photo VARCHAR(200),&#xD;&#xA;&#x9;@dateInscription DATE,&#xD;&#xA;&#x9;@sexe VARCHAR(15),&#xD;&#xA;&#x9;@dateNaiss DATE,&#xD;&#xA;&#x9;@groupeSanguin VARCHAR(3),&#xD;&#xA;&#x9;@autoriseImage BIT,&#xD;&#xA;&#x9;@presences INT,&#xD;&#xA;&#x9;@presencesTotal INT,&#xD;&#xA;&#x9;@idPersonne INT&#xD;&#xA;AS" />
@@ -4474,7 +4471,7 @@ END]]></Value>
 								</Element>
 							</Entry>
 						</Relationship>
-						<AttachedAnnotation Disambiguator="21" />
+						<AttachedAnnotation Disambiguator="23" />
 					</Element>
 				</Entry>
 				<Entry>
@@ -4496,6 +4493,7 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<Element Type="SqlSimpleColumn" Name="[dbo].[Tarif].[duree]">
+						<Property Name="IsNullable" Value="False" />
 						<Relationship Name="TypeSpecifier">
 							<Entry>
 								<Element Type="SqlTypeSpecifier">

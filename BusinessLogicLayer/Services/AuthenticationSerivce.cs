@@ -20,7 +20,7 @@ namespace BusinessLogicLayer.Services
         {
             var user = _repository.Authentication.Login(login, password);
             bool isGestionnaire = _repository.Gestionnaire.CheckIfIsGestionnaire(user.IdUtilisateur);
-
+            
             AppUtilisateurDto userDto;
 
             if (isGestionnaire)

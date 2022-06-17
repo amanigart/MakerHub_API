@@ -12,5 +12,5 @@ AS
 BEGIN
 	INSERT INTO Membre (photo, dateInscription, sexe, dateNaissance, groupeSanguin, autoriseImage, basePresencesRequises, basePresencesTotal, idPersonne)
 	OUTPUT inserted.idMembre
-	VALUES (@photo, @dateInscription, @sexe, @dateNaiss, @groupeSanguin, @autoriseImage, @presences, @presencesTotal, @idPersonne)
+	VALUES (NULL, @dateInscription, @sexe, @dateNaiss, @groupeSanguin, @autoriseImage, @presences, @presencesTotal, @idPersonne)
 END

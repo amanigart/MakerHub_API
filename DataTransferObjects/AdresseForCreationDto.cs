@@ -8,9 +8,9 @@ namespace DataTransferObjects
 {
     public sealed class AdresseForCreationDto
     {
-        public string Rue { get; init; }
-        public string Numero { get; init; }
-        public int CodePostal { get; init; }
-        public string Ville { get; init; }
+        public string? Rue { get; init; }
+        public string? Numero { get; init; }
+        public int? CodePostal { get; init; }
+        public string? Ville { get; init; }
     }
 }

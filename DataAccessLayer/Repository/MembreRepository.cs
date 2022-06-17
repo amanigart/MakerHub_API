@@ -19,6 +19,7 @@ namespace DataAccessLayer.Repository
         public int Create(Membre member)
         {
             Command cmd = new Command("RegisterMembre", true);
+            cmd.AddParameter("photo", member.Photo);
             cmd.AddParameter("dateInscription", member.DateInscription);
             cmd.AddParameter("sexe", member.Sexe);
             cmd.AddParameter("dateNaiss", member.DateNaissance);
@@ -48,11 +49,22 @@ namespace DataAccessLayer.Repository
             return _connection.ExecuteReader<Membre>(cmd);
         }
 
+        // Récupère un membre sur base de son id (idMembre)
         public Membre GetById(int id)
         {
             string query = "SELECT * FROM Membre WHERE idMembre = @idMembre";
             Command cmd = new Command(query);
             cmd.AddParameter("idMembre", id);
+
+            return _connection.ExecuteReader<Membre>(cmd).SingleOrDefault();
+        }
+
+        // Récupère un membre sur base de son idUtilisateur
+        public Membre GetByUserId(int id)
+        {
+            string query = "SELECT * FROM Membre WHERE idUtilisateur = @id";
+            Command cmd = new(query);
+            cmd.AddParameter("idUtilisateur", id);
 
             return _connection.ExecuteReader<Membre>(cmd).SingleOrDefault();
         }

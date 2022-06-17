@@ -21,7 +21,7 @@ namespace DataAccessLayer.Repository
             Command cmd = new Command("RegisterReferent", true);
             cmd.AddParameter("idMembre", referent.IdMembre);
             cmd.AddParameter("idReferent", referent.IdReferent);
-            cmd.AddParameter("lienAvecMembre", referent.LienAvecMembre);
+            cmd.AddParameter("lienMembre", referent.LienAvecMembre);
 
             return (int)_connection.ExecuteScalar(cmd);
         }

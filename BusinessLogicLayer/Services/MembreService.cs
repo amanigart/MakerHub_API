@@ -46,18 +46,27 @@ namespace BusinessLogicLayer.Services
             CreateContactForMember(newMember.Contact, memberId);
             if (!isAdult) CreateReferentForMember(newMember.Referent, memberId);
 
+            // todo: Vérifier si null
             Cotisation membership = _mapper.Map<Cotisation>(newMember.Cotisation);
             membership.DateFin = GetCotisationEndDate(membership.DateDebut, newMember.Cotisation.Duree);
             membership.IdMembre = memberId;
-            _repository.Cotisation.Create(membership);
-             
+
+            Console.WriteLine(membership.IdCotisation);
+            Console.WriteLine(membership.DateDebut);
+            Console.WriteLine(membership.DateFin);
+            Console.WriteLine(membership.EstPaye);
+            Console.WriteLine(membership.EstArchive);
+            Console.WriteLine(membership.IdTarif);
+            Console.WriteLine(membership.IdMembre);
+
+            _repository.Cotisation.Create(membership);  
         }
 
 
         // Récupère la liste de tous les membres (actifs et inactifs), avec leurs infos de base (idMembre, nom, prénom)
         public IEnumerable<MembreForListDto> GetMemberList()
         {
-            var members = _repository.Membre.GetAll().Select(m => new { IdMembre = m.IdMembre, IdPersonne = m.IdPersonne, EstActif = m.EstActif });
+            var members = _repository.Membre.GetAll().Select(m => new { IdMembre = m.IdMembre, IdPersonne = m.IdPersonne, EstActif = m.EstActif, DateNaissance = m.DateNaissance, DateInscription = m.DateInscription });
             var persons = _repository.Personne.GetAll().Select(p => new { IdPersonne = p.IdPersonne, Nom = p.Nom, Prenom = p.Prenom});
 
             var membersDto = members.Join(persons,
@@ -69,7 +78,9 @@ namespace BusinessLogicLayer.Services
                             IdMembre = member.IdMembre,
                             Nom = person.Nom,
                             Prenom = person.Prenom,
-                            EstActif = member.EstActif
+                            EstActif = member.EstActif,
+                            Age = GetMemberAge(member.DateNaissance),
+                            DateInscription = member.DateInscription
                         });
 
             return membersDto;
@@ -87,7 +98,7 @@ namespace BusinessLogicLayer.Services
             Personne person = _repository.Personne.GetById(member.IdPersonne);
             Adresse? address = (isAdult) ? _repository.Adresse.GetById((int)person.IdAdresse) : null;
 
-            IEnumerable<V_Ceinture> belts = _repository.V_Ceintures.GetAllByMember(member.IdMembre);
+            var belts = _repository.V_Ceintures.GetAllByMember(member.IdMembre);
 
             ContactDto contactDto = GetContact(member.IdMembre);
             ReferentDto? referentDto = (isAdult) ? null : referentDto = GetReferent(member.IdMembre);
@@ -166,6 +177,18 @@ namespace BusinessLogicLayer.Services
                 return false;
 
             return true;
+        }
+
+        // Calcule l'âge à partir de la date de naissance (correction si année bisextile)
+        private int GetMemberAge(DateTime birthdate)
+        {
+            DateTime today = DateTime.Now;
+            int age = today.Year - birthdate.Year;
+
+            if (birthdate.Date > today.AddYears(-age))
+                age--;
+
+            return age;
         }
 
 

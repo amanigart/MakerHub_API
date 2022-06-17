@@ -12,5 +12,7 @@ namespace DataTransferObjects
         public string Nom { get; init; }
         public string Prenom { get; init; }
         public bool EstActif { get; init; }
+        public int Age { get; init; }
+        public DateTime DateInscription { get; init; }
     }
 }

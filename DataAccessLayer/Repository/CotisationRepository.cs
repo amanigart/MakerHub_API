@@ -23,8 +23,7 @@ namespace DataAccessLayer.Repository
             cmd.AddParameter("dateDebut", entity.DateDebut);
             cmd.AddParameter("dateFin", entity.DateFin);
             cmd.AddParameter("estPaye", entity.EstPaye);
-            cmd.AddParameter("estArchive", entity.EstArchive);
-            cmd.AddParameter("idTarif", entity.EstPaye);
+            cmd.AddParameter("idTarif", entity.IdTarif);
             cmd.AddParameter("idMembre", entity.IdMembre);
 
             return (int)_connection.ExecuteScalar(cmd);

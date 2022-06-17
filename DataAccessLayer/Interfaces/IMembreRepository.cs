@@ -9,6 +9,7 @@ namespace DataAccessLayer.Interfaces
 {
     public interface IMembreRepository : IRepositoryBase<Membre>
     {
+        Membre GetByUserId(int id);
         void DisableMember(int idMembre);
     }
 }
