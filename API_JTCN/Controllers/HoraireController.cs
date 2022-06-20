@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Interfaces;
+using DataTransferObjects;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,6 +50,26 @@ namespace API_JTCN.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Action permettant de mettre à jour un horaire existant.
+        /// </summary>
+        /// <param name="schedule">Prend un HoraireDto en paramètre.</param>
+        /// <response code="204">Ne retourne rien</response>
+        /// <response code="400">Retourne un message d'erreur.</response>
+        /// <response code="422">Retourne les erreurs de validation du modèle.</response>
+        [HttpPost]
+        public IActionResult UpdateHoraire([FromBody] HoraireDto schedule)
+        {
+            if (schedule is null)
+                return BadRequest("L'objet HoraireDto est null.");
+
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
+
+            _service.Horaire.UpdateHoraire(schedule);
+            return NoContent();
         }
     }
 }

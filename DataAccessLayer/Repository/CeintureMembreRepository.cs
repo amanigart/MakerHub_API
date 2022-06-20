@@ -22,6 +22,7 @@ namespace DataAccessLayer.Repository
             Command cmd = new Command("RegisterCeintureMembre", true);
             cmd.AddParameter("idMembre", ceinture.IdMembre);
             cmd.AddParameter("idCeinture", ceinture.IdCeinture);
+            cmd.AddParameter("dateObtention", ceinture.DateObtention);
 
             return (int)_connection.ExecuteScalar(cmd);
         }

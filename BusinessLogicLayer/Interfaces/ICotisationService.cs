@@ -10,5 +10,8 @@ namespace BusinessLogicLayer.Interfaces
     public interface ICotisationService
     {
         IEnumerable<CotisationDto> GetAllCotisations();
+        void CreateCotisationForMember(CotisationForCreationDto membership);
+        void SwitchArchiveStatus(int idCotisation);
+        void SwitchPaymentStatus(int idCotisation);
     }
 }

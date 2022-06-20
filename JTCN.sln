@@ -11,13 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdoToolbox", "AdoToolbox\Ad
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoggerService", "LoggerService\LoggerService.csproj", "{6A45DB59-F19A-4D21-A33C-78C8B36D371F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{512DEE06-A9B3-4EE2-872D-0DBF267B93E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Entities", "Entities\Entities.csproj", "{512DEE06-A9B3-4EE2-872D-0DBF267B93E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{5A79876B-9BAE-43A8-B9D1-44F2CB435D4C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{5A79876B-9BAE-43A8-B9D1-44F2CB435D4C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{220ACD43-A2B8-4418-8B4D-A9FD2954FB75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogicLayer", "BusinessLogicLayer\BusinessLogicLayer.csproj", "{220ACD43-A2B8-4418-8B4D-A9FD2954FB75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataTransferObjects", "DataTransferObjects\DataTransferObjects.csproj", "{F1408A32-6F1B-4266-8AA1-33298D2C85AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataTransferObjects", "DataTransferObjects\DataTransferObjects.csproj", "{F1408A32-6F1B-4266-8AA1-33298D2C85AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{634A6851-60C4-49BC-B871-FD719A5CFB1D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{F1408A32-6F1B-4266-8AA1-33298D2C85AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1408A32-6F1B-4266-8AA1-33298D2C85AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1408A32-6F1B-4266-8AA1-33298D2C85AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{634A6851-60C4-49BC-B871-FD719A5CFB1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{634A6851-60C4-49BC-B871-FD719A5CFB1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{634A6851-60C4-49BC-B871-FD719A5CFB1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{634A6851-60C4-49BC-B871-FD719A5CFB1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -12,5 +12,6 @@ namespace BusinessLogicLayer.Interfaces
     {
         IEnumerable<Horaire> getAllHoraires();
         Horaire getHoraireById(int id);
+        void UpdateHoraire(HoraireDto horaire);
     }
 }

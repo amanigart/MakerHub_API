@@ -8,8 +8,8 @@ namespace DataTransferObjects
 {
     public sealed class ReferentForCreationDto
     {
-        public PersonneForCreationDto Personne { get; init; }
-        public AdresseForCreationDto Adresse { get; init; }
-        public string LienAvecMembre { get; init; }
+        public PersonneForCreationDto? Personne { get; init; }
+        public AdresseForCreationDto? Adresse { get; init; }
+        public string? LienAvecMembre { get; init; }
     }
 }

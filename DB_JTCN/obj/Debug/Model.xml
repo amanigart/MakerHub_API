@@ -431,6 +431,61 @@
 			</Relationship>
 			<Annotation Type="SqlInlineConstraintAnnotation" Disambiguator="23" />
 		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[ActivateMembre]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+
+	UPDATE Membre
+	SET estActif = 1
+	WHERE idMembre = @idMembre
+
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Membre]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Membre].[estActif]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Membre].[idMembre]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[ActivateMembre].[@idMembre]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[ActivateMembre].[@idMembre]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="139" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[ActivateMembre]&#xD;&#xA;&#x9;@idMembre INT&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Adresse]">
 			<Property Name="IsAnsiNullsOn" Value="True" />
 			<Relationship Name="Columns">
@@ -2193,6 +2248,46 @@ END]]></Value>
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[Login]&#xD;&#xA;&#x9;@login VARCHAR(100),&#xD;&#xA;&#x9;@passwd VARCHAR(200) &#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlDmlTrigger" Name="[dbo].[MemberDeleteTrigger]">
+			<Property Name="IsDeleteTrigger" Value="True" />
+			<Property Name="SqlTriggerType" Value="3" />
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+
+    UPDATE Membre
+    SET estActif = 0
+    WHERE idMembre IN (SELECT idMembre FROM deleted)
+		
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References Name="[dbo].[Membre]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Membre].[estActif]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Membre].[idMembre]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Membre].[idMembre]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parent">
+				<Entry>
+					<References Name="[dbo].[Membre]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="193" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE TRIGGER [MemberDeleteTrigger]&#xD;&#xA;ON [dbo].[Membre]&#xD;&#xA;INSTEAD OF DELETE&#xD;&#xA;&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Membre]">
@@ -4389,7 +4484,7 @@ BEGIN
 
 	DECLARE @status BIT
 
-	IF (SELECT estArchive FROM Cotisation) = 0
+	IF (SELECT estArchive FROM Cotisation WHERE idCotisation = @idCotisation) = 0
 		SET @status = 1
 	ELSE
 		SET @status = 0
@@ -4412,6 +4507,12 @@ END]]></Value>
 					<References Name="[dbo].[Cotisation].[estArchive]" />
 				</Entry>
 				<Entry>
+					<References Name="[dbo].[Cotisation].[idCotisation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SwitchCotisationArchiveStatus].[@idCotisation]" />
+				</Entry>
+				<Entry>
 					<References Name="[dbo].[Cotisation]" />
 				</Entry>
 				<Entry>
@@ -4419,9 +4520,6 @@ END]]></Value>
 				</Entry>
 				<Entry>
 					<References Name="[dbo].[Cotisation].[idCotisation]" />
-				</Entry>
-				<Entry>
-					<References Name="[dbo].[SwitchCotisationArchiveStatus].[@idCotisation]" />
 				</Entry>
 			</Relationship>
 			<Relationship Name="Parameters">
@@ -4447,10 +4545,84 @@ END]]></Value>
 				</Entry>
 			</Relationship>
 			<Annotation Type="SysCommentsObjectAnnotation">
-				<Property Name="Length" Value="294" />
+				<Property Name="Length" Value="329" />
 				<Property Name="StartLine" Value="1" />
 				<Property Name="StartColumn" Value="1" />
 				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SwitchCotisationArchiveStatus]&#xD;&#xA;&#x9;@idCotisation INT&#xD;&#xA;AS" />
+			</Annotation>
+		</Element>
+		<Element Type="SqlProcedure" Name="[dbo].[SwitchPaymentStatus]">
+			<Property Name="BodyScript">
+				<Value><![CDATA[
+BEGIN
+
+	DECLARE @status BIT
+
+	IF (SELECT estPaye FROM Cotisation WHERE idCotisation = @idCotisation) = 0
+		SET @status = 1
+	ELSE
+		SET @status = 0
+
+	UPDATE Cotisation
+	SET estPaye = @status
+	WHERE idCotisation = @idCotisation
+
+END]]></Value>
+			</Property>
+			<Property Name="IsAnsiNullsOn" Value="True" />
+			<Relationship Name="BodyDependencies">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[bit]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Cotisation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Cotisation].[estPaye]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Cotisation].[idCotisation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[SwitchPaymentStatus].[@idCotisation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Cotisation]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Cotisation].[estPaye]" />
+				</Entry>
+				<Entry>
+					<References Name="[dbo].[Cotisation].[idCotisation]" />
+				</Entry>
+			</Relationship>
+			<Relationship Name="Parameters">
+				<Entry>
+					<Element Type="SqlSubroutineParameter" Name="[dbo].[SwitchPaymentStatus].[@idCotisation]">
+						<Relationship Name="Type">
+							<Entry>
+								<Element Type="SqlTypeSpecifier">
+									<Relationship Name="Type">
+										<Entry>
+											<References ExternalSource="BuiltIns" Name="[int]" />
+										</Entry>
+									</Relationship>
+								</Element>
+							</Entry>
+						</Relationship>
+					</Element>
+				</Entry>
+			</Relationship>
+			<Relationship Name="Schema">
+				<Entry>
+					<References ExternalSource="BuiltIns" Name="[dbo]" />
+				</Entry>
+			</Relationship>
+			<Annotation Type="SysCommentsObjectAnnotation">
+				<Property Name="Length" Value="313" />
+				<Property Name="StartLine" Value="1" />
+				<Property Name="StartColumn" Value="1" />
+				<Property Name="HeaderContents" Value="CREATE PROCEDURE [dbo].[SwitchPaymentStatus]&#xD;&#xA;&#x9;@idCotisation INT&#xD;&#xA;AS" />
 			</Annotation>
 		</Element>
 		<Element Type="SqlTable" Name="[dbo].[Tarif]">

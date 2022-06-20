@@ -53,6 +53,7 @@ EXEC RegisterCeintureMembre 1, 2, '2010-09-1';
 EXEC RegisterCeintureMembre 1, 3, '2010-12-15';
 EXEC RegisterCeintureMembre 1, 4, '2010-12-15';
 EXEC RegisterCotisation '2021-09-1', '2022-09-1', 1, 3, 1;
+EXEC RegisterCotisation '2020-09-1', '2021-09-1', 1, 3, 1;
 -- Enregistrement de son contact
 EXEC RegisterPersonne 'Baugniet', 'Marc', 'mb@mail.com', '0478541236', 1;
 EXEC RegisterContact 1, 2, 'père';
@@ -129,8 +130,8 @@ EXEC RegisterContact 6, 8, 'inconnu';
 
 -- Enregistrement d'un membre
 --EXEC RegisterAdresse 'Place Chanoine Descamps', '14/6', 5000, 'Namur';
-EXEC RegisterPersonne 'Kulaksis', 'Konstantin', 'adm@mail.com', '0471777126', 2;
-EXEC RegisterMembre NULL, '2014-02-05', 'homme', '1992-04-23', NULL, 1, 21, 157, 11;
+EXEC RegisterPersonne 'Napoli', 'Esther', 'en@mail.com', '0471777126', 2;
+EXEC RegisterMembre NULL, '2014-02-05', 'femme', '1992-04-23', NULL, 1, 21, 157, 11;
 EXEC RegisterAppUtilisateur 'membre7', 'membre', 7; 
 EXEC RegisterCeintureMembre 7, 1, '2014-09-5';
 EXEC RegisterCeintureMembre 7, 2, '2014-09-5';
@@ -139,7 +140,7 @@ EXEC RegisterCeintureMembre 7, 4, '2015-09-5';
 EXEC RegisterCeintureMembre 7, 5, '2016-09-5';
 EXEC RegisterCeintureMembre 7, 6, '2016-09-5';
 EXEC RegisterCeintureMembre 7, 7, '2017-09-5';
-EXEC RegisterCotisation '2021-09-14', '2022-09-14', 0, 3, 5;
+EXEC RegisterCotisation '2021-09-14', '2022-09-14', 0, 3, 7;
 -- Enregistrement de son contact
 EXEC RegisterContact 7, 8, 'inconnu';
 
@@ -150,6 +151,61 @@ EXEC RegisterMembre NULL, '2012-01-18', 'homme', '1999-04-23', NULL, 1, 23, 657,
 EXEC RegisterAppUtilisateur 'membre8', 'membre', 8; 
 EXEC RegisterCeintureMembre 8, 3,'2012-09-6';
 EXEC RegisterCeintureMembre 8, 4, '2012-09-6';
-EXEC RegisterCotisation '2022-03-04', '2022-03-04', 1, 3, 6;
+EXEC RegisterCotisation '2022-03-04', '2022-03-04', 1, 3, 8;
 -- Enregistrement de son contact
 EXEC RegisterContact 8, 8, 'inconnu';
+
+-- Enregistrement d'un membre
+--EXEC RegisterAdresse 'Place Chanoine Descamps', '14/6', 5000, 'Namur';
+EXEC RegisterPersonne 'Gielen', 'Florence', 'fg@mail.com', '0471798126', 2;
+EXEC RegisterMembre NULL, '2012-01-18', 'femme', '1990-04-23', NULL, 1, 23, 657, 13;
+EXEC RegisterAppUtilisateur 'membre8', 'membre', 9; 
+EXEC RegisterCeintureMembre 9, 3,'2012-09-6';
+EXEC RegisterCeintureMembre 9, 6, '2012-09-6';
+EXEC RegisterCotisation '2022-03-04', '2022-03-04', 1, 3, 9;
+-- Enregistrement de son contact
+EXEC RegisterContact 9, 8, 'inconnu';
+
+-- Enregistrement d'un membre
+--EXEC RegisterAdresse 'Place Chanoine Descamps', '14/6', 5000, 'Namur';
+EXEC RegisterPersonne 'Gielen', 'Mathieu', 'fg@mail.com', '0471798126', 2;
+EXEC RegisterMembre NULL, '2012-01-18', 'homme', '1987-04-23', NULL, 1, 23, 657, 14;
+EXEC RegisterAppUtilisateur 'membre8', 'membre', 10; 
+EXEC RegisterCeintureMembre 10, 13,'2012-09-6';
+EXEC RegisterCeintureMembre 10, 12, '2012-09-6';
+EXEC RegisterCotisation '2022-03-04', '2022-03-04', 1, 3, 10;
+-- Enregistrement de son contact
+EXEC RegisterContact 10, 8, 'inconnu';
+
+-- Enregistrement d'un membre
+--EXEC RegisterAdresse 'Place Chanoine Descamps', '14/6', 5000, 'Namur';
+EXEC RegisterPersonne 'Gular', 'Nathan', 'fg@mail.com', '0471798126', 2;
+EXEC RegisterMembre NULL, '2012-01-18', 'homme', '2001-04-23', NULL, 1, 23, 657, 15;
+EXEC RegisterAppUtilisateur 'membre8', 'membre', 11; 
+EXEC RegisterCeintureMembre 11, 1,'2012-09-6';
+EXEC RegisterCeintureMembre 11, 6, '2012-09-6';
+EXEC RegisterCotisation '2022-03-04', '2022-03-04', 1, 3, 11;
+-- Enregistrement de son contact
+EXEC RegisterContact 11, 8, 'inconnu';
+
+-- Enregistrement d'un membre
+--EXEC RegisterAdresse 'Place Chanoine Descamps', '14/6', 5000, 'Namur';
+EXEC RegisterPersonne 'Schepens', 'Thibault', 'fg@mail.com', '0471798126', 2;
+EXEC RegisterMembre NULL, '2012-11-17', 'homme', '1998-04-23', NULL, 1, 23, 657, 16;
+EXEC RegisterAppUtilisateur 'membre8', 'membre', 12; 
+EXEC RegisterCeintureMembre 12, 3,'2012-09-6';
+EXEC RegisterCeintureMembre 12, 4, '2012-09-6';
+EXEC RegisterCotisation '2022-03-04', '2022-03-04', 1, 3, 12;
+-- Enregistrement de son contact
+EXEC RegisterContact 12, 8, 'inconnu';
+
+-- Enregistrement d'un membre
+--EXEC RegisterAdresse 'Place Chanoine Descamps', '14/6', 5000, 'Namur';
+EXEC RegisterPersonne 'Gular', 'Nathan', 'fg@mail.com', '0471798126', 2;
+EXEC RegisterMembre NULL, '2012-01-18', 'homme', '2001-04-23', NULL, 1, 23, 657, 17;
+EXEC RegisterAppUtilisateur 'membre8', 'membre', 13; 
+EXEC RegisterCeintureMembre 13, 3,'2012-09-6';
+EXEC RegisterCeintureMembre 13, 6, '2012-09-6';
+EXEC RegisterCotisation '2022-03-04', '2022-03-04', 1, 3, 13;
+-- Enregistrement de son contact
+EXEC RegisterContact 13, 8, 'inconnu';

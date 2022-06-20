@@ -1,4 +1,6 @@
 ﻿using BusinessLogicLayer.Interfaces;
+using DataTransferObjects;
+using Entities.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -52,6 +54,19 @@ namespace API_JTCN.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost]
+        public IActionResult UpdateTarif([FromBody] TarifDto pricePlan)
+        {
+            if (pricePlan is null)
+                return BadRequest("L'objet TarifDto est null.");
+
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
+
+            _service.Tarif.UpdateTarif(pricePlan);
+            return NoContent();
         }
     }
 }

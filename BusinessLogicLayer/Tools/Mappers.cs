@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer.Tools
 {
-    internal sealed class Mappers
+    public static class Mappers
     {
     }
 }

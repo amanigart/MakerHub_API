@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.Interfaces;
+﻿using AutoMapper;
+using BusinessLogicLayer.Interfaces;
 using DataAccessLayer.Interfaces;
 using DataTransferObjects;
 using Entities.Models;
@@ -15,11 +16,13 @@ namespace BusinessLogicLayer.Services
     {
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
+        private readonly IMapper _mapper;
 
-        public HoraireService(IRepositoryManager repository, ILoggerManager logger)
+        public HoraireService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
+            _mapper = mapper;
         }
 
         public IEnumerable<Horaire> getAllHoraires()
@@ -31,6 +34,12 @@ namespace BusinessLogicLayer.Services
         public Horaire getHoraireById(int id)
         {
             return _repository.Horaire.GetById(id);
+        }
+
+        public void UpdateHoraire(HoraireDto scheduleDto)
+        {
+            var schedule = _mapper.Map<Horaire>(scheduleDto);
+            _repository.Horaire.Update(schedule);
         }
     }
 }

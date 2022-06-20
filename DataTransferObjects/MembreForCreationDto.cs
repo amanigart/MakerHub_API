@@ -11,9 +11,9 @@ namespace DataTransferObjects
         public MembreInfosForCreationDto MembreInfos { get; init; }
         public PersonneForCreationDto Personne { get; init; }
         public AdresseForCreationDto Adresse { get; init; }
-        // public IEnumerable<CeintureMembreDto> Ceintures { get; init; }
+        public IEnumerable<CeintureMembreDto> Ceintures { get; init; }
         public ContactForCreationDto Contact { get; init; }
-        public ReferentForCreationDto Referent { get; init; }
+        public ReferentForCreationDto? Referent { get; init; }
         public CotisationForCreationDto Cotisation { get; init; }
     }
 }

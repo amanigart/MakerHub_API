@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogicLayer.Interfaces;
+using BusinessLogicLayer.Tools;
 using DataAccessLayer.Interfaces;
 using DataTransferObjects;
 using Entities.Exceptions;
@@ -30,7 +31,7 @@ namespace BusinessLogicLayer.Services
         // Inscription d'un nouveau membre
         public void CreateNewMember(MembreForCreationDto newMember)
         {
-            bool isAdult = CheckIfMemberIsAdult(newMember.MembreInfos.DateNaissance);
+            bool isAdult = newMember.MembreInfos.DateNaissance.CheckIfAdult();
 
             Adresse address = _mapper.Map<Adresse>(newMember.Adresse);
             int? addressId = (isAdult) ? _repository.Adresse.Create(address) : null;
@@ -43,25 +44,29 @@ namespace BusinessLogicLayer.Services
             member.IdPersonne = personId;
             int memberId = _repository.Membre.Create(member);
 
+            var belts = _mapper.Map<IEnumerable<CeintureMembre>>(newMember.Ceintures);
+            foreach (var belt in belts)
+            {
+                belt.IdMembre = memberId;
+                _repository.CeintureMembre.Create(belt);
+            }
+
             CreateContactForMember(newMember.Contact, memberId);
             if (!isAdult) CreateReferentForMember(newMember.Referent, memberId);
 
-            // todo: Vérifier si null
             Cotisation membership = _mapper.Map<Cotisation>(newMember.Cotisation);
-            membership.DateFin = GetCotisationEndDate(membership.DateDebut, newMember.Cotisation.Duree);
+            membership.DateFin = membership.DateDebut.GetCotisationEndDate(newMember.Cotisation.Duree);
             membership.IdMembre = memberId;
-
-            Console.WriteLine(membership.IdCotisation);
-            Console.WriteLine(membership.DateDebut);
-            Console.WriteLine(membership.DateFin);
-            Console.WriteLine(membership.EstPaye);
-            Console.WriteLine(membership.EstArchive);
-            Console.WriteLine(membership.IdTarif);
-            Console.WriteLine(membership.IdMembre);
 
             _repository.Cotisation.Create(membership);  
         }
 
+        // Ajoute une nouvelle ceinture au membre
+        public void CreateNewBeltForMember(CeintureMembreForCreationDto belt)
+        {
+            var memberBelt = _mapper.Map<CeintureMembre>(belt);
+            _repository.CeintureMembre.Create(memberBelt);
+        }
 
         // Récupère la liste de tous les membres (actifs et inactifs), avec leurs infos de base (idMembre, nom, prénom)
         public IEnumerable<MembreForListDto> GetMemberList()
@@ -79,7 +84,7 @@ namespace BusinessLogicLayer.Services
                             Nom = person.Nom,
                             Prenom = person.Prenom,
                             EstActif = member.EstActif,
-                            Age = GetMemberAge(member.DateNaissance),
+                            Age = member.DateNaissance.GetAge(),
                             DateInscription = member.DateInscription
                         });
 
@@ -94,7 +99,7 @@ namespace BusinessLogicLayer.Services
             if (member is null)
                 throw new MembreNotFoundException();
 
-            bool isAdult = CheckIfMemberIsAdult(member.DateNaissance);
+            bool isAdult = member.DateNaissance.CheckIfAdult();
             Personne person = _repository.Personne.GetById(member.IdPersonne);
             Adresse? address = (isAdult) ? _repository.Adresse.GetById((int)person.IdAdresse) : null;
 
@@ -103,7 +108,7 @@ namespace BusinessLogicLayer.Services
             ContactDto contactDto = GetContact(member.IdMembre);
             ReferentDto? referentDto = (isAdult) ? null : referentDto = GetReferent(member.IdMembre);
 
-            IEnumerable<V_Cotisations>? cotisations = _repository.V_Cotisations.GetAllByMember((int)member.IdMembre);
+            var cotisations = _repository.V_Cotisations.GetAllByMember((int)member.IdMembre);
             if (cotisations is null)
                 throw new CotisationNotFoundException();
 
@@ -133,7 +138,8 @@ namespace BusinessLogicLayer.Services
         public void DeleteMember(int idMembre) => _repository.Membre.Delete(idMembre);
 
 
-        // MembreUpdate
+        // Réactive un membre inactif
+        public void ActivateMember(int idMembre) => _repository.Membre.ActivateMember(idMembre);
 
 
         // Récupère la personne de contact d'un membre, à partir de l'id de celui-ci
@@ -165,30 +171,6 @@ namespace BusinessLogicLayer.Services
                 Adresse = referentAddress,
                 LienAvecMembre = referent.LienAvecMembre
             };
-        }
-
-
-        // Vérifie si un membre est adulte ou mineur (renvoie true si adulte, false si mineur)
-        private bool CheckIfMemberIsAdult(DateTime birthDate)
-        {
-            DateTime today = DateTime.Now;
-
-            if (birthDate > today.AddYears(-18))
-                return false;
-
-            return true;
-        }
-
-        // Calcule l'âge à partir de la date de naissance (correction si année bisextile)
-        private int GetMemberAge(DateTime birthdate)
-        {
-            DateTime today = DateTime.Now;
-            int age = today.Year - birthdate.Year;
-
-            if (birthdate.Date > today.AddYears(-age))
-                age--;
-
-            return age;
         }
 
 
@@ -225,21 +207,6 @@ namespace BusinessLogicLayer.Services
                 LienAvecMembre = newReferent.LienAvecMembre
             };
             _repository.Referent.Create(referent);
-        }
-
-
-        // Calcule la date de fin d'une cotisation 
-        private DateTime GetCotisationEndDate(DateTime startDate, string duration)
-        {
-            switch (duration)
-            {
-                case "année":
-                    return startDate.AddYears(1);
-                case "trimestre":
-                    return startDate.AddMonths(3);
-                default:
-                    return startDate.AddDays(1);
-            }
         }
     }
 }

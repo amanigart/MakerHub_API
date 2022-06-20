@@ -76,6 +76,7 @@
     <Folder Include="Procedures\Presence" />
     <Folder Include="Procedures\Tarif" />
     <Folder Include="Procedures\Cotisation" />
+    <Folder Include="Triggers" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\AppUtilisateur.sql" />
@@ -130,6 +131,9 @@
     <Build Include="Procedures\Cotisation\SwitchCotisationArchiveStatus.sql" />
     <Build Include="Procedures\Cotisation\ArchiveCotisation.sql" />
     <Build Include="Procedures\Utilisateur\GetAppUtilisateurInfos.sql" />
+    <Build Include="Triggers\MemberDeleteTrigger.sql" />
+    <Build Include="Procedures\Membre\ActivateMembre.sql" />
+    <Build Include="Procedures\Cotisation\SwitchPaymentStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB_JTCN.publish.xml" />

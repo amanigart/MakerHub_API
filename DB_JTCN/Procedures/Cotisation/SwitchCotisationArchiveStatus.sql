@@ -5,7 +5,7 @@ BEGIN
 
 	DECLARE @status BIT
 
-	IF (SELECT estArchive FROM Cotisation) = 0
+	IF (SELECT estArchive FROM Cotisation WHERE idCotisation = @idCotisation) = 0
 		SET @status = 1
 	ELSE
 		SET @status = 0

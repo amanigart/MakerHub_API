@@ -28,18 +28,41 @@ namespace API_JTCN.Controllers
             return Ok(members);
         }
 
+
         /// <summary>
-        /// Action permettant de supprimer un membre sur base de son id.
+        /// Action permettant de supprimer (soft delete) un membre sur base de son id.
         /// </summary>
         /// <param name="id">Prend un id de membre (idMembre) en paramètre.</param>
-        /// <response code="200">Ne retourne rien.</response>
+        /// <response code="204">Ne retourne rien.</response>
         /// <response code="400">Retourne un message d'erreur.</response>
-        //[HttpDelete("{id:int}")]
-        //public IActionResult DeleteMember([FromRoute] int id)
-        //{
-        //    _service.Membre.DeleteMember(id);
-        //    return Ok();
-        //}
+        [HttpDelete("{id:int}")]
+        public IActionResult DeleteMember([FromRoute] int id)
+        {
+            _service.Membre.DeleteMember(id);
+            return NoContent();
+        }
+
+
+        /// <summary>
+        /// Action permettant de ré-activer un membre (estActif = true)
+        /// </summary>
+        /// <param name="id">Prend l'id d'un membre (idMembre) en paramètre.</param>
+        /// <response code="204">Ne retourne rien.</response>
+        /// <response code="400">Retourne un message d'erreur.</response>
+        [HttpPost("{id:int}")]
+        public IActionResult ActivateMember([FromRoute] int id)
+        {
+            try
+            {
+                _service.Membre.ActivateMember(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
         /// <summary>
         /// Action permettant de récupérer les infos détaillées d'un membre.
@@ -61,11 +84,12 @@ namespace API_JTCN.Controllers
             }
         }
 
+
         /// <summary>
         /// Action permettant d'inscrire un nouveau membre.
         /// </summary>
         /// <param name="member"></param>
-        /// <response code="200">Retourne un code 200.</response>
+        /// <response code="204">Retourne un code 200.</response>
         /// <response code="400">Retourne un message d'erreur.</response>
         [HttpPost("inscription")]
         public IActionResult CreateMember([FromBody] MembreForCreationDto member)
@@ -73,7 +97,7 @@ namespace API_JTCN.Controllers
             try
             {
                 _service.Membre.CreateNewMember(member);
-                return Ok();
+                return NoContent();
             }
             catch (Exception ex)
             {

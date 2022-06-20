@@ -26,7 +26,7 @@ namespace DataAccessLayer.Repository
         private readonly Lazy<IEntrainementRepository> _entrainementRepository;
         private readonly Lazy<IPresenceRepository> _presenceRepository;
         private readonly Lazy<IRepositoryBase<Tarif>> _tarifRepository;
-        private readonly Lazy<IRepositoryBase<Cotisation>> _cotisationRepository;
+        private readonly Lazy<ICotisationRepository> _cotisationRepository;
         private readonly Lazy<IV_CotisationsRepository> _vCotisationsRepository;
 
         public RepositoryManager(IConfiguration config) : base(config)
@@ -46,7 +46,7 @@ namespace DataAccessLayer.Repository
             _entrainementRepository = new Lazy<IEntrainementRepository>(() => new EntrainementRepository(config));
             _presenceRepository = new Lazy<IPresenceRepository>(() => new PresenceRepository(config));
             _tarifRepository = new Lazy<IRepositoryBase<Tarif>>(() => new TarifRepository(config));
-            _cotisationRepository = new Lazy<IRepositoryBase<Cotisation>>(() => new CotisationRepository(config));
+            _cotisationRepository = new Lazy<ICotisationRepository>(() => new CotisationRepository(config));
             _vCotisationsRepository = new Lazy<IV_CotisationsRepository>(() => new V_CotisationsRepository(config));
         }
 
@@ -65,7 +65,7 @@ namespace DataAccessLayer.Repository
         public IEntrainementRepository Entrainement => _entrainementRepository.Value;
         public IPresenceRepository Presence => _presenceRepository.Value;
         public IRepositoryBase<Tarif> Tarif => _tarifRepository.Value;
-        public IRepositoryBase<Cotisation> Cotisation => _cotisationRepository.Value;
+        public ICotisationRepository Cotisation => _cotisationRepository.Value;
         public IV_CotisationsRepository V_Cotisations => _vCotisationsRepository.Value;
     }
 }

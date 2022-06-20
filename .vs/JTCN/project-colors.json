@@ -45,7 +45,32 @@
       "ProjectGuid": "6a45db59-f19a-4d21-a33c-78c8b36d371f",
       "DisplayName": "LoggerService",
       "ColorIndex": 7
+    },
+    "220acd43-a2b8-4418-8b4d-a9fd2954fb75": {
+      "ProjectGuid": "220acd43-a2b8-4418-8b4d-a9fd2954fb75",
+      "DisplayName": "BusinessLogicLayer",
+      "ColorIndex": 8
+    },
+    "512dee06-a9b3-4ee2-872d-0dbf267b93e8": {
+      "ProjectGuid": "512dee06-a9b3-4ee2-872d-0dbf267b93e8",
+      "DisplayName": "Entities",
+      "ColorIndex": 9
+    },
+    "5a79876b-9bae-43a8-b9d1-44f2cb435d4c": {
+      "ProjectGuid": "5a79876b-9bae-43a8-b9d1-44f2cb435d4c",
+      "DisplayName": "DataAccessLayer",
+      "ColorIndex": 10
+    },
+    "f1408a32-6f1b-4266-8aa1-33298d2c85af": {
+      "ProjectGuid": "f1408a32-6f1b-4266-8aa1-33298d2c85af",
+      "DisplayName": "DataTransferObjects",
+      "ColorIndex": 11
+    },
+    "634a6851-60c4-49bc-b871-fd719a5cfb1d": {
+      "ProjectGuid": "634a6851-60c4-49bc-b871-fd719a5cfb1d",
+      "DisplayName": "UnitTests",
+      "ColorIndex": 12
     }
   },
-  "NextColorIndex": 8
+  "NextColorIndex": 13
 }

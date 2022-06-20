@@ -8,6 +8,7 @@ namespace DataTransferObjects
 {
     public sealed class CotisationForCreationDto
     {
+        public int IdMembre { get; init; }
         public DateTime DateDebut { get; init; }
         public bool EstPaye { get; init; }
         public int? IdTarif { get; init; }

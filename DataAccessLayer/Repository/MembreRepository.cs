@@ -85,9 +85,12 @@ namespace DataAccessLayer.Repository
             _connection.ExecuteNonQuery(cmd);
         }
 
-        public void DisableMember(int idMembre)
+        public void ActivateMember(int idMembre)
         {
-            throw new NotImplementedException();
+            Command cmd = new("ActivateMembre", true);
+            cmd.AddParameter("idMembre", idMembre);
+
+            _connection.ExecuteNonQuery(cmd);
         }
     }
 }

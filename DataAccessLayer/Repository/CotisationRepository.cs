@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public sealed class CotisationRepository : RepositoryBase, IRepositoryBase<Cotisation>
+    public sealed class CotisationRepository : RepositoryBase, ICotisationRepository
     {
         public CotisationRepository(IConfiguration config) 
             : base(config)
@@ -68,6 +68,24 @@ namespace DataAccessLayer.Repository
             cmd.AddParameter("estArchive", entity.EstArchive);
             cmd.AddParameter("idTarif", entity.EstPaye);
             cmd.AddParameter("idMembre", entity.IdMembre);
+
+            _connection.ExecuteNonQuery(cmd);
+        }
+
+        // Mise à jour du status de la cotisation (estArchive)
+        public void UpdateArchiveStatus(int idCotisation)
+        {
+            Command cmd = new("SwitchCotisationArchiveStatus", true);
+            cmd.AddParameter("idCotisation", idCotisation);
+
+            _connection.ExecuteNonQuery(cmd);
+        }
+
+        // Mise à jour du status du paiement (estPaye)
+        public void UpdatePaymentStatus(int idCotisation)
+        {
+            Command cmd = new("SwitchPaymentStatus", true);
+            cmd.AddParameter("idCotisation", idCotisation);
 
             _connection.ExecuteNonQuery(cmd);
         }

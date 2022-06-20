@@ -1,4 +1,5 @@
 ﻿using BusinessLogicLayer.Interfaces;
+using DataTransferObjects;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -49,6 +50,19 @@ namespace API_JTCN.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost("ceinture-membre")]
+        public IActionResult CreateBelt([FromBody] CeintureMembreForCreationDto belt)
+        {
+            if (belt is null)
+                return BadRequest("L'objet CeintureMembreForCreationDto est null.");
+
+            if (!ModelState.IsValid)
+                return UnprocessableEntity(ModelState);
+
+            _service.Membre.CreateNewBeltForMember(belt);
+            return NoContent();
         }
     }
 }

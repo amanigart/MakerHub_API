@@ -24,7 +24,7 @@ namespace DataAccessLayer.Interfaces
         IEntrainementRepository Entrainement { get; }
         IPresenceRepository Presence { get; }
         IRepositoryBase<Tarif> Tarif { get; }
-        IRepositoryBase<Cotisation> Cotisation { get; }
+        ICotisationRepository Cotisation { get; }
         IV_CotisationsRepository V_Cotisations { get; }
     }
 }
