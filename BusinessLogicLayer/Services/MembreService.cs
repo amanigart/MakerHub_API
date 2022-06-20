@@ -52,7 +52,8 @@ namespace BusinessLogicLayer.Services
             }
 
             CreateContactForMember(newMember.Contact, memberId);
-            if (!isAdult) CreateReferentForMember(newMember.Referent, memberId);
+            if (!isAdult && newMember.Referent is not null) 
+                CreateReferentForMember(newMember.Referent, memberId);
 
             Cotisation membership = _mapper.Map<Cotisation>(newMember.Cotisation);
             membership.DateFin = membership.DateDebut.GetCotisationEndDate(newMember.Cotisation.Duree);

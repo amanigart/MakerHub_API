@@ -10,7 +10,7 @@ namespace Entities.Models
     {
         public int IdCotisation { get; set; }
         public DateTime DateDebut { get; set; }
-        public DateTime DateFin { get; set; }
+        public DateTime? DateFin { get; set; }
         public bool EstPaye { get; set; }
         public bool EstArchive { get; set; }
         public int IdTarif { get; set; }

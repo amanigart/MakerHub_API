@@ -14,7 +14,6 @@ namespace BusinessLogicLayer.Tools
             switch (duration)
             {
                 case "année":
-
                     return startDate.AddYears(1);
                 case "trimestre":
                     return startDate.AddMonths(3);
