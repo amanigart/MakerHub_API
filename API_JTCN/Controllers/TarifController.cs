@@ -1,6 +1,7 @@
 ﻿using BusinessLogicLayer.Interfaces;
 using DataTransferObjects;
 using Entities.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,6 +37,7 @@ namespace API_JTCN.Controllers
             }
         }
 
+        [Authorize]
         /// <summary>
         /// Action permettant de récupérer un tarif sur base de son id.
         /// </summary>
@@ -56,6 +58,7 @@ namespace API_JTCN.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult UpdateTarif([FromBody] TarifDto pricePlan)
         {

@@ -22,6 +22,15 @@ namespace API_JTCN.Extensions
             });
         }
 
+        // Configuration des Auth policies
+        public static void ConfigureAuthorization(this IServiceCollection services)
+        {
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("authPolicy", policy => policy.RequireAuthenticatedUser());
+            });
+        }
+
         // Configuration de l'injection de dépendance du LoggerService
         public static void ConfigureLoggerService(this IServiceCollection services)
         {
@@ -41,7 +50,7 @@ namespace API_JTCN.Extensions
         }
 
         // Configuration de l'injection de dépendance du Service Authentication
-        public static void ConfigureAuthService(this IServiceCollection services)
+        public static void ConfigureTokenService(this IServiceCollection services)
         {
             services.AddScoped<ITokenService, TokenService>();
         }
@@ -68,8 +77,8 @@ namespace API_JTCN.Extensions
         }
 
 
-        // Configure Swagger pour documentation
-        /*public static void ConfigureSwagger(this IServiceCollection services)
+        //Configure Swagger pour documentation
+        public static void ConfigureSwagger(this IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
             {
@@ -88,6 +97,6 @@ namespace API_JTCN.Extensions
                     }
                 });
             });
-        }*/
+        }
     }
 }

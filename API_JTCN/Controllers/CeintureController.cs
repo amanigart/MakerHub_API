@@ -1,10 +1,12 @@
 ﻿using BusinessLogicLayer.Interfaces;
 using DataTransferObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_JTCN.Controllers
 {
+    [Authorize]
     [Route("api/ceintures")]
     [ApiController]
     public sealed class CeintureController : ControllerBase

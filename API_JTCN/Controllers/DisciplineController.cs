@@ -1,9 +1,11 @@
 ﻿using BusinessLogicLayer.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_JTCN.Controllers
 {
+    [Authorize]
     [Route("api/disciplines")]
     [ApiController]
     public sealed class DisciplineController : ControllerBase

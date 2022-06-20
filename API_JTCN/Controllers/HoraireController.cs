@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer.Interfaces;
 using DataTransferObjects;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,12 +33,14 @@ namespace API_JTCN.Controllers
             }
         }
 
+
         /// <summary>
         /// Action permettant de récupérer un horaire d'entraînement sur base de son id.
         /// </summary>
         /// <param name="id">Prend un id d'horaire (idHoraire) en paramètre, via la route.</param>
         /// <response code="200">Retourne un horaire d'entraînement.</response>
         /// <response code="400">Retourne un message d'erreur.</response>
+        [Authorize]
         [HttpGet("{id:int}")]
         public IActionResult GetHoraire([FromRoute] int id)
         {
@@ -52,6 +55,7 @@ namespace API_JTCN.Controllers
             }
         }
 
+
         /// <summary>
         /// Action permettant de mettre à jour un horaire existant.
         /// </summary>
@@ -59,6 +63,7 @@ namespace API_JTCN.Controllers
         /// <response code="204">Ne retourne rien</response>
         /// <response code="400">Retourne un message d'erreur.</response>
         /// <response code="422">Retourne les erreurs de validation du modèle.</response>
+        [Authorize]
         [HttpPost]
         public IActionResult UpdateHoraire([FromBody] HoraireDto schedule)
         {

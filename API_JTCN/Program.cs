@@ -10,9 +10,11 @@ builder.Services.ConfigureCors();
 builder.Services.ConfigureLoggerService();
 builder.Services.ConfigureRepositoryManager();
 builder.Services.ConfigureServiceManager();
-builder.Services.ConfigureAuthService();
+builder.Services.ConfigureTokenService();
 builder.Services.ConfigureJwt(builder.Configuration);
+builder.Services.ConfigureAuthorization();
 builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.ConfigureSwagger();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -36,6 +38,7 @@ app.UseHttpsRedirection();
 
 app.UseCors("CorsPolicy");
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

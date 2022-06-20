@@ -90,3 +90,4 @@ C:\MAKERHUB\API\JTCN\API_JTCN\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols
 C:\MAKERHUB\API\JTCN\API_JTCN\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\MAKERHUB\API\JTCN\API_JTCN\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\MAKERHUB\API\JTCN\API_JTCN\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\MAKERHUB\API\JTCN\API_JTCN\bin\Debug\net6.0\swagger.xml

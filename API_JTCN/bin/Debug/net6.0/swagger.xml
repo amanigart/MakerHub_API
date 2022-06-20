@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API_JTCN</name>
+    </assembly>
+    <members>
+        <member name="M:API_JTCN.Controllers.AuthController.Post(DataTransferObjects.LoginFormDto)">
+            <summary>
+            Formulaire de login/authentification.
+            </summary>
+            <param name="form">Prend un LoginFormDto (Login, Password) en paramètre</param>
+            <response code="200">Retourne un token contenant: id utilisateur + rôle</response>
+            <response code="400">Retourne un message d'erreur si login ou mot de passe sont incorrects</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.CeintureController.GetCeintures">
+            <summary>
+            Action permettant de récupérer la liste des ceintures.
+            </summary>
+            <response code="200">Retourne une collection comprenant les ceintures de jiu-jitsu et tai-jitsu.</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.CeintureController.GetCeintureById(System.Int32)">
+            <summary>
+            Action permettant de récupérer le détail d'une ceinture sur base de son id.
+            </summary>
+            <param name="id">Prend un id de ceinture (idCeinture) en paramètre.</param>
+            <response code="200">Retourne un objet ceintureDto.</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.CotisationController.GetCotisations">
+            <summary>
+            Action permettant de récupérer la liste de toutes les cotisations.
+            </summary>
+            <response code="200">Retourne la liste des cotisations</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.CotisationController.CreateMembership(DataTransferObjects.CotisationForCreationDto)">
+            <summary>
+            Action permettant de créer un nouveau membre.
+            </summary>
+            <param name="membership">Un modèle CotisationForCreationDto</param>
+            <response code="204">Ne retourne rien.</response>
+            <response code="400">Retourne un message d'erreur si l'objet est null.</response>
+            <response code="422">Retourne un message d'erreur en cas demodèle non-valide.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.CotisationController.ChangeArchiveStatus(System.Int32)">
+            <summary>
+            Action permettant d'archiver ou désarchiver une cotisation.
+            </summary>
+            <param name="id">L'identifiant de la cotisation (idCotisation)</param>
+            <response code="204">Ne retourne rien.</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.CotisationController.ChangePaymentStatus(System.Int32)">
+            <summary>
+            Action permettant de modifier l'état d'un paiement une cotisation.
+            </summary>
+            <param name="id">L'identifiant de la cotisation (idCotisation)</param>
+            <response code="204">Ne retourne rien.</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.HoraireController.GetHoraires">
+            <summary>
+            Action permettant de récupérer la liste deses horaires des jours d'entraînement.
+            </summary>
+            <response code="200">Retourne une collection d'horaires d'entraînement.</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.HoraireController.GetHoraire(System.Int32)">
+            <summary>
+            Action permettant de récupérer un horaire d'entraînement sur base de son id.
+            </summary>
+            <param name="id">Prend un id d'horaire (idHoraire) en paramètre, via la route.</param>
+            <response code="200">Retourne un horaire d'entraînement.</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.HoraireController.UpdateHoraire(DataTransferObjects.HoraireDto)">
+            <summary>
+            Action permettant de mettre à jour un horaire existant.
+            </summary>
+            <param name="schedule">Prend un HoraireDto en paramètre.</param>
+            <response code="204">Ne retourne rien</response>
+            <response code="400">Retourne un message d'erreur.</response>
+            <response code="422">Retourne les erreurs de validation du modèle.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.MembreController.GetMemberList">
+            <summary>
+            Action permettant de récupérer la liste de tous les membres du club (actifs et inactifs).
+            </summary>
+            <response code="200">Retourne une collection de membres (uniquement avec: id, nom, prénom, status).</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.MembreController.DeleteMember(System.Int32)">
+            <summary>
+            Action permettant de supprimer (soft delete) un membre sur base de son id.
+            </summary>
+            <param name="id">Prend un id de membre (idMembre) en paramètre.</param>
+            <response code="204">Ne retourne rien.</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.MembreController.ActivateMember(System.Int32)">
+            <summary>
+            Action permettant de ré-activer un membre (estActif = true)
+            </summary>
+            <param name="id">Prend l'id d'un membre (idMembre) en paramètre.</param>
+            <response code="204">Ne retourne rien.</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.MembreController.GetMemberDetails(System.Int32)">
+            <summary>
+            Action permettant de récupérer les infos détaillées d'un membre.
+            </summary>
+            <param name="id">Prend un id de membre (idMembre) en paramètre.</param>
+            <response code="200">Retourne un membre détaillé.</response>
+            <response code="400">Retourne un message d'erreur si le membre n'existe pas.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.MembreController.CreateMember(DataTransferObjects.MembreForCreationDto)">
+            <summary>
+            Action permettant d'inscrire un nouveau membre.
+            </summary>
+            <param name="member"></param>
+            <response code="204">Retourne un code 200.</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+        <member name="M:API_JTCN.Controllers.TarifController.GetTarifs">
+            <summary>
+            Action permettant de récupérer la liste complète des formules tarifaires.
+            </summary>
+            <response code="200">Retourne une collection de tarifs.</response>
+            <response code="400">Retourne un message d'erreur.</response>
+        </member>
+    </members>
+</doc>
